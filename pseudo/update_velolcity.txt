@@ -1,0 +1,17 @@
+//PSEUDOCODE update_velolcity
+
+function update_velolcity(BODY bodies) { 
+
+	//loop through all bodies and calculate 
+	for (loop through bodies.length) {  
+
+	// compute the acceleration 
+	bodies[i].acceleration += (fx / mass, fy / mass) 
+
+	// update the velocity of body n 
+    bodies[i].vx += (acceleration * time_step) 
+	bodies[i].vy += (acceleration * time_step) 
+
+	} 
+
+}    

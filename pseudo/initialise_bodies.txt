@@ -1,0 +1,22 @@
+//PSEUDOCODE initialise_bodies
+function initialise_bodies (int num_bodies) { 
+
+Malloc BODY bodies to size of num_bodies 
+seed = rand  
+
+	//for (loop n-bodies) {  
+	//set x,y and size
+	bodies[i].size =rand(seed) within limits set 
+
+ 	bodies[i].x =rand(seed) within limits set 
+    bodies[i].y =rand(seed) within limits set 
+
+	//gen current velocity of body n 
+    bodies[i].vx =rand(seed) within limits set 
+    bodies[i].vy =rand(seed) within limits set 
+
+    bodies[i].mass =rand(seed) within limits set  
+
+	} 
+Return bodies 
+} 

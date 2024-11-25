@@ -1,0 +1,21 @@
+STEPS FUNCTION
+
+function steps(){
+
+initialize variables
+    //for (loop n-bodies){
+    //compute forces on bodies[i]
+
+    //update velocity of body[i]
+    velocity += force / mass * time step
+
+    //update position of body[i]
+    position += velocity * time step
+
+    // new updated position & velocity
+    new_postition = bodies[i].position
+
+    //increment time step
+    t = t + time step
+    }
+}

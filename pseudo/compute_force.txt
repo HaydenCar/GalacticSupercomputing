@@ -1,0 +1,31 @@
+//PSEUDOCODE initialise_bodies
+
+function compute_force(BODIES bodies){ 
+
+	//for (i = 0 loop through bodies.length){  
+
+  
+
+	//retrieve current of body i 
+
+	Locally save Mass, acceleration, distance of body i and body i+1 to var 
+
+   
+
+	//calculate new force using formula 
+
+	new_position = current_position + (current_velocity * delta_time) 
+
+  
+
+	//update body n force to new force 
+
+bodies[i].force= new force 
+
+ 
+
+//currently debating how to svae t 
+
+	} 
+
+} 

@@ -1,0 +1,20 @@
+//PSEUDOCODE update_positions
+
+function update_positions(BODIES bodies){ 
+
+	//for (i = 0 loop through bodies.length){  
+
+	//retrieve current position of body n 
+	current_position = bodies[i].position 
+
+	//retrieve current velocity of body n 
+	current_velocity = bodies[i].velocity 
+
+	//calculate new position using formula 
+	new_position = current_position + (current_velocity * delta_time) 
+
+	//update body n position to new position 
+    bodies[i].position = new position 
+
+	} 
+} 

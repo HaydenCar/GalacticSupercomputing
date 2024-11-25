@@ -1,0 +1,20 @@
+typedef struct body 
+
+{ 
+    double size; 
+
+    double x; 
+    double y; 
+
+    double mass; 
+
+    double vx; 
+    double vy; 
+
+    double fx; 
+    double fy; 
+
+    double total_force; 
+
+    double acceleration; 
+} BODY; 
