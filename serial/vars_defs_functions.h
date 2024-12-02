@@ -16,5 +16,6 @@ typedef struct body
 
 extern int num_bodies;
 extern int delta_time;
+extern int time_step;
 
 void initialise_bodies(BODY *bodies);
