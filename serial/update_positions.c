@@ -2,7 +2,6 @@
 
 void update_positions(BODY *bodies)
 {
-
     for (int i = 0; i < num_bodies; i++)
     {
         // retrieve current position of body n
