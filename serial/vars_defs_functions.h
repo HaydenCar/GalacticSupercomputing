@@ -15,7 +15,7 @@ typedef struct body
 } BODY;
 
 extern int num_bodies;
-extern int delta_time;
 extern int time_step;
 
 void initialise_bodies(BODY *bodies);
+void update_positions(BODY *bodies, double delta_time);
