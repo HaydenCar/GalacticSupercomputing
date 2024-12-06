@@ -21,9 +21,6 @@ void initialise_bodies(BODY *bodies)
         bodies[i].vx = ((float)(rand() % 200) - 100) / 10.0; // vx between -10.0 and +10.0
         bodies[i].vy = ((float)(rand() % 200) - 100) / 10.0; // vy between -10.0 and +10.0
 
-        bodies[i].mass = rand() % 25;
-
-        
 
         // Set mass
         bodies[i].mass = rand() % 1000 + 10;
