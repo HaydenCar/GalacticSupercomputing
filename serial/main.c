@@ -22,11 +22,13 @@ double delta_time = 1.0;
     initialise_bodies(bodies);
     // print the bodies to make sure it works
 
+// world generation loop
     for(update_num = 0;update_num<10;update_num++){
 
         print_world(bodies);
         update_positions(bodies, delta_time);
-
+        calculate_forces(bodies);
+        update_velocity(bodies, delta_time);
 
     }
 
@@ -35,8 +37,8 @@ double delta_time = 1.0;
     //GET_TIME(delta);
 
 
-    printf("this is what start is %f", start);
-    printf("this is what delta is %f", delta);
+    //printf("this is what start is %f", start);
+    //printf("this is what delta is %f", delta);
     
 
     //!PROBLEM WAS HERE: start and delta are equal, delta time = 0?

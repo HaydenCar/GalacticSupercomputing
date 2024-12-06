@@ -22,3 +22,4 @@ void initialise_bodies(BODY *bodies);
 void update_positions(BODY *bodies, double delta_time);
 void print_world(BODY *bodies);
 void update_velocity(BODY *bodies, double delta_time);
+void calculate_forces(BODY *bodies);
