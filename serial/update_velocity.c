@@ -1,6 +1,6 @@
 #include "vars_defs_functions.h"
 
-void update_velolcity(BODY *bodies)
+void update_velolcity(BODY *bodies, double delta_time)
 {
 
     // loop through all bodies and calculate
@@ -11,7 +11,7 @@ void update_velolcity(BODY *bodies)
         bodies[i].acceleration += (bodies[i].fx / bodies[i].mass, bodies[i].fy / bodies[i].mass);
 
         // update the velocity of body n
-        bodies[i].vx += (bodies[i].acceleration * time_step); // WE NEED TIME_STEP
-        bodies[i].vy += (bodies[i].acceleration * time_step);
+        bodies[i].vx += (bodies[i].acceleration * delta_time); // delta_time in place of timestep
+        bodies[i].vy += (bodies[i].acceleration * delta_time);
     }
 }
