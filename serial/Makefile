@@ -6,7 +6,7 @@ CFLAGS = -Wall -g
 TARGET = main
 
 # Source files
-SRCS = main.c initialise_bodies.c update_positions.c print_world.c
+SRCS = main.c initialise_bodies.c update_positions.c print_world.c update_velocity.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)

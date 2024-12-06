@@ -21,28 +21,23 @@ int main()
     initialise_bodies(bodies);
     // print the bodies to make sure it works
 
-    
-
     print_world(bodies);
 
     GET_TIME(delta);
 
     printf("this is what start is %f", start);
     printf("this is what delta is %f", delta);
-    
 
-    //!PROBLEM WAS HERE: start and delta are equal, delta time = 0?
-    //double delta_time = start - delta;
-    
+    //! PROBLEM WAS HERE: start and delta are equal, delta time = 0?
+    // double delta_time = start - delta;
 
     double delta_time = 1.0;
-    printf("\nthis is in main: %f",delta_time);
+    printf("\nthis is in main: %f", delta_time);
     update_positions(bodies, delta_time);
-
 
     print_world(bodies);
 
-
+    update_velocity(bodies, delta_time);
 
     // free memory and end program
     free(bodies);
