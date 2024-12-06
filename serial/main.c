@@ -18,20 +18,17 @@ int main()
     // initialise the bodies with random nums
     initialise_bodies(bodies);
     // print the bodies to make sure it works
-    for (int i = 0; i < num_bodies; i++)
-    {
-        printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
-               i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
-    }
+    print_world(bodies);
 
     GET_TIME(delta);
     double delta_time = start - delta;
+    printf("\nthis is in main: %f",delta_time);
     update_positions(bodies, delta_time);
-    for (int i = 0; i < num_bodies; i++)
-    {
-        printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
-               i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
-    }
+
+
+    print_world(bodies);
+
+
 
     // free memory and end program
     free(bodies);
