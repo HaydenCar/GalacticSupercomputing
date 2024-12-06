@@ -1,6 +1,6 @@
 #include "vars_defs_functions.h"
 
-void update_velolcity(BODY *bodies, double delta_time)
+void update_velocity(BODY *bodies, double delta_time)
 {
 
     // loop through all bodies and calculate

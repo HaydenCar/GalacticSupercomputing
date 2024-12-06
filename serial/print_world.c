@@ -8,6 +8,5 @@
                i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
     }
 
-    update_num++;
 
     }
