@@ -9,8 +9,8 @@ typedef struct body
     double vx; // velocity in x dir
     double vy; // velocity in y dir
     double total_force;
-    //double fx; // force in x dir
-    //double fy; // force in y dir
+    double fx; // force in x dir
+    double fy; // force in y dir
     double acceleration;
 } BODY;
 
