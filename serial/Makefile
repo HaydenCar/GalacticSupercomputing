@@ -6,14 +6,14 @@ CFLAGS = -Wall -g
 TARGET = main
 
 # Source files
-SRCS = main.c initialise_bodies.c update_positions.c print_world.c update_velocity.c
+SRCS = main.c initialise_bodies.c update_positions.c print_world.c update_velocity.c compute_force.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)
 
 # Build the target
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -lm
 
 # Compile source files into object files
 %.o: %.c
