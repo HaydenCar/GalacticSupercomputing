@@ -23,7 +23,8 @@
                     double distance = distanceCalc(bodies[i].x,bodies[i].y,bodies[j].x,bodies[j].y);
                     double force = G*((bodies[j].mass*bodies[i].mass)/(pow(distance,2)));                 
                     bodies[i].total_force += force;
-
+ 
+ 
 
                         //for the direction of the force we do the subtraction
                     double force_x = force * (bodies[j].x - bodies[i].x) / distance;

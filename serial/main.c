@@ -20,6 +20,8 @@ double delta_time = 1.0;
 
     // initialise the bodies with random nums
     initialise_bodies(bodies);
+    calculate_forces(bodies);
+    print_world(bodies);
     // print the bodies to make sure it works
 
 // world generation loop
