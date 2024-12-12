@@ -6,9 +6,9 @@ int update_num = 0;
 // is update num just time step?
 int main()
 {
-    double delta_time = 1.0;
+    double delta_time = 0.001;
 
-    double start, finish, elapsed, delta;
+    double start, finish, elapsed;
     GET_TIME(start);
     // Declare the bodies and allocate the memory
     BODY *bodies = (BODY *)malloc(num_bodies * sizeof(BODY));
@@ -25,7 +25,7 @@ int main()
     // print the bodies to make sure it works
 
     // world generation loop
-    for (update_num = 0; update_num < 10; update_num++)
+    for (update_num = 0; update_num < 10000; update_num++)
     {
 
         print_world(bodies);
