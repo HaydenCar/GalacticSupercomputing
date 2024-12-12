@@ -20,7 +20,9 @@ void initialise_bodies(BODY *bodies)
         // Set mass
         bodies[i].mass = rand() % 1000 + 10;
 
-        bodies[i].total_force = 0;
+        bodies[i].total_force = 1;
+        bodies[i].fx = 1;
+        bodies[i].fx = 1;
     }
 
     // double distance = distanceCalc(bodies[0].x,bodies[0].y,bodies[1].x,bodies[1].y);
