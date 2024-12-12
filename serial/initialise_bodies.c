@@ -7,19 +7,15 @@ void initialise_bodies(BODY *bodies)
 {
     srand(time(NULL));
 
-    //    double mass;
-    //     double total_force;
-    //     double acceleration;
-
     for (int i = 0; i < num_bodies; i++)
     {
         // Set position (x, y) with random values
-        bodies[i].x = rand() % 1000;
-        bodies[i].y = rand() % 1000;
+        bodies[i].x = ((double)rand() / (double)RAND_MAX) * (0.00 - 1000.00) + 1000.00;
+        bodies[i].y = ((double)rand() / (double)RAND_MAX) * (0.00 - 1000.00) + 1000.00;
 
         // Generate velocity (vx, vy)
-        bodies[i].vx = ((float)(rand() % 200) - 100) / 10.0; // vx between -10.0 and +10.0
-        bodies[i].vy = ((float)(rand() % 200) - 100) / 10.0; // vy between -10.0 and +10.0
+        bodies[i].vx = ((double)rand() / (double)RAND_MAX) * (-10.00 - 10.00) + 10.0;  // vx between -10.0 and +10.0
+        bodies[i].vy = ((double)rand() / (double)RAND_MAX) * (-10.00 - 10.00) + 10.00; // vy between -10.0 and +10.0
 
         // Set mass
         bodies[i].mass = rand() % 1000 + 10;
