@@ -1,6 +1,10 @@
 
 in order to calculate the acceleration we must use newtons second law of motion
 acceleration = force/mass
+force*acceleration = mass
+force = mass/acceleration
 
 BUT in order to calculate the force for this we must do this other equation
 force of i to j = Gravity * ((mass of i * mass of j) / (r*r) )
+
+velocity = initial velocity + acceleration * time since this velocity(our delta time)
