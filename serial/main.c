@@ -3,10 +3,10 @@
 
 int num_bodies = 3;
 int update_num = 0;
-//is update num just time step?
+// is update num just time step?
 int main()
 {
-double delta_time = 1.0;
+    double delta_time = 1.0;
 
     double start, finish, elapsed, delta;
     GET_TIME(start);
@@ -24,43 +24,15 @@ double delta_time = 1.0;
     print_world(bodies);
     // print the bodies to make sure it works
 
-
-// world generation loop
-    for(update_num = 0;update_num<10;update_num++){
+    // world generation loop
+    for (update_num = 0; update_num < 10; update_num++)
+    {
 
         print_world(bodies);
         update_positions(bodies, delta_time);
         compute_force(bodies);
         update_velocity(bodies, delta_time);
-
     }
-
-    //print_world(bodies);
-
-    //GET_TIME(delta);
-
-
-    //printf("this is what start is %f", start);
-    //printf("this is what delta is %f", delta);
-    
-
-
-    //! PROBLEM WAS HERE: start and delta are equal, delta time = 0?
-    // double delta_time = start - delta;
-
-
-    
-    //printf("\nthis is in main: %f",delta_time);
-
-
-    //print_world(bodies);
-
-  //  double delta_time = 1.0;
- //   printf("\nthis is in main: %f", delta_time);
- //   update_positions(bodies, delta_time);
-
- //   print_world(bodies);
-
 
     update_velocity(bodies, delta_time);
 
