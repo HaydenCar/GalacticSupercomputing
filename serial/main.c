@@ -24,6 +24,7 @@ double delta_time = 1.0;
     print_world(bodies);
     // print the bodies to make sure it works
 
+
 // world generation loop
     for(update_num = 0;update_num<10;update_num++){
 
@@ -43,9 +44,10 @@ double delta_time = 1.0;
     //printf("this is what delta is %f", delta);
     
 
-    //!PROBLEM WAS HERE: start and delta are equal, delta time = 0?
-    //double delta_time = start - delta;
-    
+
+    //! PROBLEM WAS HERE: start and delta are equal, delta time = 0?
+    // double delta_time = start - delta;
+
 
     
     //printf("\nthis is in main: %f",delta_time);
@@ -53,7 +55,14 @@ double delta_time = 1.0;
 
     //print_world(bodies);
 
+  //  double delta_time = 1.0;
+ //   printf("\nthis is in main: %f", delta_time);
+ //   update_positions(bodies, delta_time);
 
+ //   print_world(bodies);
+
+
+    update_velocity(bodies, delta_time);
 
     // free memory and end program
     free(bodies);
