@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#define G 6.67430e-11 
+#define G 6.67430e-11
 typedef struct body
 {
     double x; // x pos
