@@ -20,7 +20,7 @@ double delta_time = 1.0;
 
     // initialise the bodies with random nums
     initialise_bodies(bodies);
-    calculate_forces(bodies);
+    compute_force(bodies);
     print_world(bodies);
     // print the bodies to make sure it works
 
@@ -30,7 +30,7 @@ double delta_time = 1.0;
 
         print_world(bodies);
         update_positions(bodies, delta_time);
-        calculate_forces(bodies);
+        compute_force(bodies);
         update_velocity(bodies, delta_time);
 
     }

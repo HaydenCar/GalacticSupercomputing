@@ -6,7 +6,7 @@
         return sqrt(pow(xTwo - xOne, 2) + pow(yTwo - yOne, 2));
     }
 
-    void calculate_forces(BODY *bodies){
+    void compute_force(BODY *bodies){
 
         for (int i = 0; i < num_bodies; i++){
             // bodies[i].total_force = 0;
