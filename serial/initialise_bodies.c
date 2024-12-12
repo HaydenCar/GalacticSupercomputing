@@ -1,7 +1,6 @@
 #include "vars_defs_functions.h" // Ensure this defines BODY, num_bodies, and random generator
 #include "time.h"
 #include "math.h"
-double distanceCalc(double xOne, double yOne, double xTwo, double yTwo);
 
 void initialise_bodies(BODY *bodies)
 {
@@ -9,25 +8,20 @@ void initialise_bodies(BODY *bodies)
 
     for (int i = 0; i < num_bodies; i++)
     {
-        // Set position (x, y) with random values
-        bodies[i].x = ((double)rand() / (double)RAND_MAX) * (0.00 - 1000.00) + 1000.00;
-        bodies[i].y = ((double)rand() / (double)RAND_MAX) * (0.00 - 1000.00) + 1000.00;
+        // Set position (x, y) with random values between 0.0 and 1000.0
+        bodies[i].x = 0.00 + ((double)rand() / RAND_MAX) * (1000.00 - 0.00);
+        bodies[i].y = 0.00 + ((double)rand() / RAND_MAX) * (1000.00 - 0.00);
 
-        // Generate velocity (vx, vy)
-        bodies[i].vx = ((double)rand() / (double)RAND_MAX) * (-10.00 - 10.00) + 10.0;  // vx between -10.0 and +10.0
-        bodies[i].vy = ((double)rand() / (double)RAND_MAX) * (-10.00 - 10.00) + 10.00; // vy between -10.0 and +10.0
+        // Generate velocity (vx, vy) with random values between -10.0 and 10.0
+        bodies[i].vx = -10.00 + ((double)rand() / RAND_MAX) * (10.00 - (-10.00));
+        bodies[i].vy = -10.00 + ((double)rand() / RAND_MAX) * (10.00 - (-10.00));
 
-        // Set mass
-        bodies[i].mass = rand() % 1000 + 10;
+        // Set mass to a random value between 10 and 1000
+        bodies[i].mass = 10.00 + ((double)rand() / RAND_MAX) * (1000.00 - 10.00);
 
-        bodies[i].total_force = 1;
-        bodies[i].fx = 1;
-        bodies[i].fx = 1;
+        // Initialize forces to 0
+        bodies[i].fx = 0;
+        bodies[i].fy = 0;
+        bodies[i].total_force = 0;
     }
-
-    // double distance = distanceCalc(bodies[0].x,bodies[0].y,bodies[1].x,bodies[1].y);
-    // double force = G*((bodies[1].mass*bodies[0].mass)/(pow(distance,2)));
-
-    // bodies[0].total_force = force;
-    // bodies[1].total_force = -(force);
 }
