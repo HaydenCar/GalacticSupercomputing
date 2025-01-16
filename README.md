@@ -4,3 +4,13 @@ To build and run the code, download the folder cd into the serial subfolder and 
 
 This is a year 3 computing group project.
 Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
+
+### Requirements to run code:
+- `Linux / MacOs`
+- `gnuplot`
+
+### Commands to run code:
+- `cd serial`
+- `make`
+- `./main`
+- `gnuplot plot_script.gp`
