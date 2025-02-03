@@ -5,6 +5,12 @@ To build and run the code, download the folder cd into the serial subfolder and 
 This is a year 3 computing group project.
 Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 
+### Features to be implemented by end of semester:
+- `Fast Multipole Method or Barnes Hut algorithm`
+- `Leapfrog Integration`
+- `Message Passing Interface for Raspberry-Pi parallel computing`
+- `3D Renderer`
+
 ### Requirements to run code:
 - `Linux / MacOs`
 - `gnuplot`
