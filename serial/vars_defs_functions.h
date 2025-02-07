@@ -45,13 +45,13 @@ typedef struct node
     double zp;
     BODY **bodies;
     double mass;
-    uint16_t bodies;
+    uint16_t bodyCount;
     char c;
     struct NODE *leafs[8];
 } NODE;
 
 // THE OCTREE
-struct octree
+typedef struct octree
 {
     NODE root;
 } OCTREE;
