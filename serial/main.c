@@ -6,7 +6,7 @@ int update_num = 0;
 // is update num just time step?
 int main()
 {
-    double delta_time = 0.0001;
+    double delta_time = 0.001;
 
     double start, finish, elapsed;
     GET_TIME(start);
@@ -47,7 +47,7 @@ int main()
     }
 
     // world generation loop
-    for (update_num = 0; update_num < 10000000; update_num++)
+    for (update_num = 0; update_num < 2000000; update_num++)
     {
 
         for (int i = 0; i < num_bodies; i++)
@@ -55,12 +55,12 @@ int main()
             /// printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f, force= %.2f, fx = %.2f, fy=%.2f\n",
             // i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy, bodies[i].total_force, bodies[i].fx, bodies[i].fy);
             // Print the state at every time step to file and terminal
-            printf("TimeStep %d:\n", update_num);
+            // printf("TimeStep %d:\n", update_num);
 
             fprintf(fp, "TimeStep %d %d %.2f %.2f \n",
                     update_num, i, bodies[i].x, bodies[i].y);
-            printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
-                   i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
+            // printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
+            //      i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
         }
 
         update_positions(bodies, delta_time);

@@ -17,7 +17,7 @@ void initialise_bodies(BODY *bodies)
         bodies[i].vy = -10.00 + ((double)rand() / RAND_MAX) * (10.00 - (-10.00));
 
         // Set mass to a random value between 10 and 1000
-        bodies[i].mass = 10.00 + ((double)rand() / RAND_MAX) * (10000000.00 - 10.00);
+        bodies[i].mass = 3000.00 + ((double)rand() / RAND_MAX) * (1000000.00 - 3000.00);
 
         // Initialize forces to 0
         bodies[i].fx = 0;
