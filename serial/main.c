@@ -36,14 +36,10 @@ int main()
 
     // Print initial state to file and terminal
     // prints name at the top
-    // fprintf(fp, "# Type BodyIndex X_Position Y_Position Mass Velocity_X Velocity_Y\n");
     printf("Initial State:\n");
     for (int i = 0; i < num_bodies; i++)
     {
-        // fprintf(fp, "Initial %d %.2f %.2f %.2f %.2f %.2f\n",
-        // i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
-        printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
-               i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
+        printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n", i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
     }
 
     // world generation loop
@@ -52,15 +48,7 @@ int main()
 
         for (int i = 0; i < num_bodies; i++)
         {
-            /// printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f, force= %.2f, fx = %.2f, fy=%.2f\n",
-            // i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy, bodies[i].total_force, bodies[i].fx, bodies[i].fy);
-            // Print the state at every time step to file and terminal
-            // printf("TimeStep %d:\n", update_num);
-
-            fprintf(fp, "TimeStep %d %d %.2f %.2f \n",
-                    update_num, i, bodies[i].x, bodies[i].y);
-            // printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
-            //      i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
+            fprintf(fp, "TimeStep %d %d %.2f %.2f \n", update_num, i, bodies[i].x, bodies[i].y);
         }
 
         update_positions(bodies, delta_time);
