@@ -15,6 +15,7 @@ void compute_force(BODY *bodies)
 
         bodies[i].fx = 0;
         bodies[i].fy = 0;
+        bodies[i].fz = 0;
 
         for (int j = 0; j < num_bodies; j++)
         {
@@ -24,6 +25,9 @@ void compute_force(BODY *bodies)
             }
             else
             {
+                ////////////////
+                // FIX NEEDS HELP
+                ////////////////
                 double distance = distanceCalc(bodies[i].x, bodies[i].y, bodies[j].x, bodies[j].y);
 
                 double force = G * ((bodies[j].mass * bodies[i].mass) / (pow(distance, 2)));
@@ -32,9 +36,11 @@ void compute_force(BODY *bodies)
 
                 double force_x = force * (bodies[j].x - bodies[i].x) / distance;
                 double force_y = force * (bodies[j].y - bodies[i].y) / distance;
+                double force_z = force * (bodies[j].z - bodies[i].z) / distance;
 
                 bodies[i].fx += force_x;
                 bodies[i].fy += force_y;
+                bodies[i].fz += force_z;
             }
         }
     }

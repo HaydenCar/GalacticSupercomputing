@@ -11,10 +11,12 @@ void initialise_bodies(BODY *bodies)
         // Set position (x, y) with random values between 0.0 and 1000.0
         bodies[i].x = -5000.00 + ((double)rand() / RAND_MAX) * (10000.00);
         bodies[i].y = -5000.00 + ((double)rand() / RAND_MAX) * (10000.00);
+        bodies[i].z = -5000.00 + ((double)rand() / RAND_MAX) * (10000.00);
 
         // Generate velocity (vx, vy) with random values between -10.0 and 10.0
         bodies[i].vx = -10.00 + ((double)rand() / RAND_MAX) * (10.00 - (-10.00));
         bodies[i].vy = -10.00 + ((double)rand() / RAND_MAX) * (10.00 - (-10.00));
+        bodies[i].vz = -10.00 + ((double)rand() / RAND_MAX) * (10.00 - (-10.00));
 
         // Set mass to a random value between 10 and 1000
         bodies[i].mass = 3000.00 + ((double)rand() / RAND_MAX) * (1000000.00 - 3000.00);
@@ -22,6 +24,8 @@ void initialise_bodies(BODY *bodies)
         // Initialize forces to 0
         bodies[i].fx = 0;
         bodies[i].fy = 0;
+        bodies[i].fz = 0;
+
         bodies[i].total_force = 0;
     }
 }
