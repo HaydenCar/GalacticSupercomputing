@@ -1,13 +1,9 @@
 #include "vars_defs_functions.h"
 
-void octree()
+void create_octree()
 {
 }
 
-void create_octree()
+void octree()
 {
-    NODE *n;
-    while (n)
-    {
-    }
 }

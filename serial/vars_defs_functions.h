@@ -4,6 +4,7 @@
 /////////////////////////
 // BODY STRUCTS
 /////////////////////////
+
 typedef struct body
 {
     double x; // x pos
@@ -24,6 +25,7 @@ typedef struct body
 /////////////////////////
 // OCTREE STRUCTS
 /////////////////////////
+
 // AXIS ALLIGNED BOUNDING BOX
 // https://stackoverflow.com/questions/22512319/what-is-aabb-collision-detection
 typedef struct aabb
@@ -45,13 +47,13 @@ typedef struct node
     double zp;
     BODY **bodies;
     double mass;
-    uint16_t bodies;
+    uint16_t bodyCount;
     char c;
     struct NODE *leafs[8];
 } NODE;
 
 // THE OCTREE
-struct octree
+typedef struct octree
 {
     NODE root;
 } OCTREE;
@@ -59,15 +61,16 @@ struct octree
 /////////////////////////
 // EXTERN VARS
 /////////////////////////
+
 extern int num_bodies;
-extern int update_num;
+extern int timestep;
 
 /////////////////////////
 // FUNCTIONS
 /////////////////////////
+
 void initialise_bodies(BODY *bodies);
 void update_positions(BODY *bodies, double delta_time);
 void print_world(BODY *bodies);
 void update_velocity(BODY *bodies, double delta_time);
 void compute_force(BODY *bodies);
-void node_get_i();
