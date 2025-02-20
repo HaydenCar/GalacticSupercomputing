@@ -11,6 +11,7 @@ int main()
 
     double start, finish, elapsed;
     GET_TIME(start);
+
     // Declare the bodies and allocate the memory
     BODY *bodies = (BODY *)malloc(num_bodies * sizeof(BODY));
     if (bodies == NULL)
@@ -49,9 +50,12 @@ int main()
         }
 
         // Update forces, velocities, and positions
-        compute_force(bodies);
-        update_velocity(bodies, delta_time);
+        // half
+        update_velocity(bodies, delta_time, 1);
         update_positions(bodies, delta_time);
+        compute_force(bodies);
+        // full
+        update_velocity(bodies, delta_time, 0);
     }
 
     // Close the file, free memory and end program
