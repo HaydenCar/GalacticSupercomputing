@@ -34,10 +34,7 @@ int main()
     printf("Initial State:\n");
     for (int i = 0; i < num_bodies; i++)
     {
-        // fprintf(fp, "Initial %d %.2f %.2f %.2f %.2f %.2f\n",
-        // i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
-        printf("Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
-               i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
+        print_world(bodies, fp);
     }
 
     // World generation loop
@@ -47,9 +44,7 @@ int main()
         {
             for (int i = 0; i < num_bodies; i++)
             {
-                fprintf(fp, "TimeStep %d %d %.2f %.2f \n", timestep, i, bodies[i].x, bodies[i].y);
-                printf("TimeStep %d: Body %d: x= %.2f, y= %.2f, mass= %.2f, vx= %.2f, vy= %.2f\n",
-                       timestep, i, bodies[i].x, bodies[i].y, bodies[i].mass, bodies[i].vx, bodies[i].vy);
+                print_world(bodies, fp);
             }
         }
 
