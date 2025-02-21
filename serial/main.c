@@ -31,21 +31,12 @@ int main()
         return 1;
     }
 
-    printf("Initial State:\n");
-    for (int i = 0; i < num_bodies; i++)
-    {
-        print_world(bodies, fp);
-    }
-
     // World generation loop
     for (timestep = 0; timestep < 50000000; timestep++)
     {
         if (timestep % 500000 == 0) // Only print every 100th timestep
         {
-            for (int i = 0; i < num_bodies; i++)
-            {
-                print_world(bodies, fp);
-            }
+            print_world(bodies, fp);
         }
 
         // Update forces, velocities, and positions
