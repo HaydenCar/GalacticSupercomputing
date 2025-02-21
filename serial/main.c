@@ -42,11 +42,11 @@ int main()
 
         // Update forces, velocities, and positions
         // half
-        update_velocity(bodies, delta_time, 1);
+        update_velocity(bodies, delta_time);
         update_positions(bodies, delta_time);
         compute_force(bodies);
         // full
-        update_velocity(bodies, delta_time, 0);
+        update_velocity(bodies, delta_time);
     }
 
     // Close the file, free memory and end program

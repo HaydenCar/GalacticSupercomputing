@@ -3,11 +3,6 @@
 
 double G = 6.67430e-11;
 
-double distanceCalc(double xOne, double yOne, double xTwo, double yTwo)
-{
-    return sqrt(pow(xTwo - xOne, 2) + pow(yTwo - yOne, 2));
-}
-
 void compute_force(BODY *bodies)
 {
     for (int i = 0; i < num_bodies; i++)
