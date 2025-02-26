@@ -1,0 +1,1 @@
+../../../../../ompi/mpi/fortran/use-mpi-f08/file_get_amode_f08.F90

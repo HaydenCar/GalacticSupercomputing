@@ -1,0 +1,1 @@
+../../../../../ompi/mpi/fortran/use-mpi-f08/rget_accumulate_f08.F90
