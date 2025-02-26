@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/file_seek_f08.F90

@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/dist_graph_create_adjacent_f08.F90

@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/file_write_shared_f08.F90

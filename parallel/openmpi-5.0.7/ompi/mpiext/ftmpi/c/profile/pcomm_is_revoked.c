@@ -1,1 +1,0 @@
-../../../../../ompi/mpiext/ftmpi/c/comm_is_revoked.c

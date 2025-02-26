@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/mpif-h/parrived_f.c

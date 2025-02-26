@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/win_shared_query_f08.F90

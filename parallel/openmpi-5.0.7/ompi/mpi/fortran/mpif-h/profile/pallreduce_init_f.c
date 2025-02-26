@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/mpif-h/allreduce_init_f.c

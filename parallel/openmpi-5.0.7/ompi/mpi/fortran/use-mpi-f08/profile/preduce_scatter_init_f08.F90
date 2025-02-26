@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/reduce_scatter_init_f08.F90

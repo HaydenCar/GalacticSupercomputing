@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/f_sync_reg_f08.F90

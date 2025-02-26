@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/type_delete_attr_f08.F90

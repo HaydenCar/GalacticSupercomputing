@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/mpif-h/scan_init_f.c

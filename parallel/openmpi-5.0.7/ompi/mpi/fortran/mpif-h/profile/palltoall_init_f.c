@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/mpif-h/alltoall_init_f.c

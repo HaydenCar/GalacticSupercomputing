@@ -1,1 +1,0 @@
-../../../../../ompi/mpi/fortran/use-mpi-f08/type_get_contents_f08.F90
