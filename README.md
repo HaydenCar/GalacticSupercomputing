@@ -7,7 +7,7 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 
 ### Features to be implemented by end of semester:
 - `Barnes Hut algorithm`
-- `Leapfrog Integration`
+- `Leapfrog Integration` DONE
 - `Message Passing Interface for Raspberry-Pi parallel computing`
 - `3D Renderer`
 
