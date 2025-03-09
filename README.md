@@ -7,7 +7,7 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 
 ### Features to be implemented by end of semester:
 - `Barnes Hut algorithm`
-- `Leapfrog Integration`
+- `Leapfrog Integration` DONE
 - `Message Passing Interface for Raspberry-Pi parallel computing`
 - `3D Renderer`
 
@@ -20,3 +20,6 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 - `make`
 - `./main`
 - `gnuplot plot_script.gp`
+
+### Results
+![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/serial/n_body_simulation.png)
