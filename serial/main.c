@@ -33,9 +33,9 @@ int main()
     }
 
     // World generation loop
-    for (timestep = 0; timestep < 80000000; timestep++)
+    for (timestep = 0; timestep < 350000000; timestep++)
     {
-        if (timestep % 500000 == 0) // Only print every 100th timestep
+        if (timestep % 499999 == 0) // Only print every 100th timestep
         {
             print_world(bodies, fp);
         }

@@ -3,28 +3,30 @@
 
 void initialise_bodies(BODY *bodies)
 {
-    if (num_bodies != 2){
+    if (num_bodies != 2)
+    {
         return;
     }
-    
-    double mass = 1e6;
-    double distance = 200.0;
+
+    double sun_m = 1.989e30;
+    double earth_m = 5.972e24;
+    double distance = 1.496e11; // There is no exact num for this but I seen this a few times
     double G = 6.67430e-11;
 
-    bodies[0].x = -distance / 2.0;
+    bodies[0].x = 0.0;
     bodies[0].y = 0.0;
-    bodies[1].x = distance / 2.0;
+    bodies[1].x = distance;
     bodies[1].y = 0.0;
 
-    bodies[0].mass = mass;
-    bodies[1].mass = mass;
+    bodies[0].mass = sun_m;
+    bodies[1].mass = earth_m;
 
-    double v = sqrt(G * (mass + mass) / distance);
+    double v = sqrt(G * sun_m / distance);
 
     bodies[0].vx = 0.0;
-    bodies[0].vy = v * (mass / (mass + mass));
+    bodies[0].vy = 0.0;
     bodies[1].vx = 0.0;
-    bodies[1].vy = -v * (mass / (mass + mass));
+    bodies[1].vy = v;
 
     for (int i = 0; i < num_bodies; i++)
     {
