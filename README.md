@@ -22,4 +22,4 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 - `gnuplot plot_script.gp`
 
 ### Results
-![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/serial/n_body_simulation.png)
+![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/two-body/serial/n_body_simulation.png)
