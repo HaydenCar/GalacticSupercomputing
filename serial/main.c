@@ -6,8 +6,6 @@ int timestep = 0;
 
 int main()
 {
-    // Delta time is important as the smaller the more accurate but takes way longer to run
-
     double start, finish, elapsed;
     GET_TIME(start);
 
