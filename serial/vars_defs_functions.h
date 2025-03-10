@@ -63,16 +63,16 @@ typedef struct octree
 // EXTERN VARS
 /////////////////////////
 
-extern int num_bodies;
-extern int timestep;
+extern int num_bodies; // The amount of bodies in the simulation
+extern int timestep;   // The current step
 
 /////////////////////////
-// #define for all const
+// CONST VALUES
 /////////////////////////
 
-#define MAX_STEP 350000000
-#define PRINT_INTERVAL 499999
-#define DELTA_TIME 0.1 // Delta time is important as the smaller the more accurate but takes way longer to run
+#define MAX_STEP 350000000    // Max amount of steps in the simulation
+#define PRINT_INTERVAL 499999 // The data is only stored in intervals due to storage and ram
+#define DELTA_TIME 0.1        // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
 
 /////////////////////////

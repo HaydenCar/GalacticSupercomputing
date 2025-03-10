@@ -17,11 +17,11 @@ int main()
         return 1;
     }
 
-    // initialise the bodies with random nums
+    // Initialise the bodies with random nums
     initialise_bodies(bodies);
     compute_force(bodies);
 
-    // open file for writing
+    // Open file for writing
     FILE *fp = fopen("output.dat", "w");
     if (fp == NULL)
     {
@@ -42,11 +42,11 @@ int main()
         }
 
         // Update forces, velocities, and positions
-        // half
+        // Half
         update_velocity(bodies);
         update_positions(bodies);
         compute_force(bodies);
-        // full
+        // Full
         update_velocity(bodies);
     }
 
