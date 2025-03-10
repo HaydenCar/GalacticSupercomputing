@@ -1,8 +1,6 @@
 #include "vars_defs_functions.h"
 #include "math.h"
 
-double G = 6.67430e-11;
-
 void compute_force(BODY *bodies)
 {
     for (int i = 0; i < num_bodies; i++)
@@ -14,6 +12,7 @@ void compute_force(BODY *bodies)
         {
             if (i == j)
             {
+                // Logic to handle collison here!!
                 continue;
             }
 
@@ -21,7 +20,7 @@ void compute_force(BODY *bodies)
             double dy = bodies[j].y - bodies[i].y;
             double distance = sqrt(dx * dx + dy * dy);
 
-            double force = G * ((bodies[j].mass * bodies[i].mass) / (distance * distance));
+            double force = GRAVITY * ((bodies[j].mass * bodies[i].mass) / (distance * distance));
 
             bodies[i].fx += force * (dx / distance);
             bodies[i].fy += force * (dy / distance);

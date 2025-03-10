@@ -1,13 +1,12 @@
 #include "vars_defs_functions.h"
 #include "timer.h"
 
-int num_bodies = 2;
+int num_bodies = 3;
 int timestep = 0;
 
 int main()
 {
     // Delta time is important as the smaller the more accurate but takes way longer to run
-    double delta_time = 0.1;
 
     double start, finish, elapsed;
     GET_TIME(start);
@@ -32,21 +31,25 @@ int main()
         return 1;
     }
 
+    // Print step 0
+    print_world(bodies, fp);
+    timestep++;
+
     // World generation loop
-    for (timestep = 0; timestep < 350000000; timestep++)
+    for (; timestep < MAX_STEP; timestep++)
     {
-        if (timestep % 499999 == 0) // Only print every 100th timestep
+        if (timestep % PRINT_INTERVAL == 0) // Only print every 100th timestep
         {
             print_world(bodies, fp);
         }
 
         // Update forces, velocities, and positions
         // half
-        update_velocity(bodies, delta_time);
-        update_positions(bodies, delta_time);
+        update_velocity(bodies);
+        update_positions(bodies);
         compute_force(bodies);
         // full
-        update_velocity(bodies, delta_time);
+        update_velocity(bodies);
     }
 
     // Close the file, free memory and end program

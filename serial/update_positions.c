@@ -1,6 +1,6 @@
 #include "vars_defs_functions.h"
 
-void update_positions(BODY *bodies, double delta_time)
+void update_positions(BODY *bodies)
 {
     for (int i = 0; i < num_bodies; i++)
     {
@@ -14,8 +14,8 @@ void update_positions(BODY *bodies, double delta_time)
         double current_velocity_y = bodies[i].vy;
 
         // calculate new position using formula
-        double new_position_x = current_position_x + (current_velocity_x * delta_time);
-        double new_position_y = current_position_y + (current_velocity_y * delta_time);
+        double new_position_x = current_position_x + (current_velocity_x * DELTA_TIME);
+        double new_position_y = current_position_y + (current_velocity_y * DELTA_TIME);
 
         // update body n position to new position
         bodies[i].x = new_position_x;

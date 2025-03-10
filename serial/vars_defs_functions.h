@@ -67,11 +67,20 @@ extern int num_bodies;
 extern int timestep;
 
 /////////////////////////
+// #define for all const
+/////////////////////////
+
+#define MAX_STEP 350000000
+#define PRINT_INTERVAL 499999
+#define DELTA_TIME 0.1 // Delta time is important as the smaller the more accurate but takes way longer to run
+#define GRAVITY 6.67430e-11
+
+/////////////////////////
 // FUNCTIONS
 /////////////////////////
 
 void initialise_bodies(BODY *bodies);
-void update_positions(BODY *bodies, double delta_time);
+void update_positions(BODY *bodies);
 void print_world(BODY *bodies, FILE *fp);
-void update_velocity(BODY *bodies, double delta_time);
+void update_velocity(BODY *bodies);
 void compute_force(BODY *bodies);
