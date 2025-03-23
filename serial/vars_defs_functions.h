@@ -1,6 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
+
+/////////////////////////
+// MACRO DEFINITIONS
+/////////////////////////
+
+#define WorldMinX -10000;
+#define WorldMaxX 10000;
+#define WorldMinY -10000;
+#define WorldMaxY 10000;
 
 /////////////////////////
 // BODY STRUCTS
@@ -10,17 +20,17 @@ typedef struct body
 {
     double x; // x pos
     double y; // y pos
-    double z;
+    // double z;
     double mass;
     double vx; // velocity in x dir
     double vy; // velocity in y dir
-    double vz;
+    // double vz;
     double total_force;
     double fx; // force in x dir
     double fy; // force in y dir
-    double fz;
+    // double fz;
     double acceleration;
-    char address[];
+    // char address[];
 } BODY;
 
 /////////////////////////
@@ -33,31 +43,35 @@ typedef struct aabb
 {
     double maxX;
     double maxY;
-    double maxZ;
+    // double maxZ;
     double minX;
     double minY;
-    double minZ;
+    // double minZ;
 } AABB;
 
 // OCTREE NODE
-typedef struct node
+typedef struct Node
 {
-    AABB aabb;
-    double xp;
-    double yp;
-    double zp;
-    BODY **bodies;
-    double mass;
-    uint16_t bodyCount;
-    char c;
-    struct NODE *leafs[8];
-} NODE;
+    AABB bounds;
+    struct Node* children[4];
+    struct Node* parent;
+    double COMx,COMy; //Centre Of Mass
+    BODY* body; // the node is not split and contains a body
+    double Totalmass;
+    bool hasChildren; // the node is split and does not contain a single body
+
+    // int addressNum; // anywhere from 0-7 instead of a-h (easier to loop through) for now doing quad so 0-3
+} Node;
+
+
 
 // THE OCTREE
 typedef struct octree
 {
-    NODE root;
+    Node* root;
 } OCTREE;
+
+
 
 /////////////////////////
 // EXTERN VARS
@@ -75,3 +89,11 @@ void update_positions(BODY *bodies, double delta_time);
 void print_world(BODY *bodies, FILE *fp);
 void update_velocity(BODY *bodies, double delta_time);
 void compute_force(BODY *bodies);
+
+void create_octree(BODY *bodies);
+Node* createNode(AABB bounds,Node* parent);
+void InsertBody(Node* node, BODY* body);
+void divideNode(Node* node);
+Node* FindNext(Node* node, BODY *body);
+void UpdateParent(Node *node);
+void test_tree(Node *node, int depth);

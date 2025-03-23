@@ -1,7 +1,7 @@
 #include "vars_defs_functions.h"
 #include "timer.h"
 
-int num_bodies = 2;
+int num_bodies = 4;
 int timestep = 0;
 
 int main()
@@ -14,6 +14,7 @@ int main()
 
     // Declare the bodies and allocate the memory
     BODY *bodies = (BODY *)malloc(num_bodies * sizeof(BODY));
+    
     if (bodies == NULL)
     {
         printf("Failed to allocate memory for bodies");
@@ -22,6 +23,7 @@ int main()
 
     // initialise the bodies with random nums
     initialise_bodies(bodies);
+    create_octree(bodies);
     compute_force(bodies);
 
     // open file for writing
@@ -33,12 +35,14 @@ int main()
     }
 
     // World generation loop
-    for (timestep = 0; timestep < 80000000; timestep++)
+    // for (timestep = 0; timestep < 80000000; timestep++)
+    for (timestep = 0; timestep < 2; timestep++)
+
     {
-        if (timestep % 500000 == 0) // Only print every 100th timestep
-        {
+        // if (timestep % 500000 == 0) // Only print every 100th timestep
+        // {
             print_world(bodies, fp);
-        }
+        // }
 
         // Update forces, velocities, and positions
         // half

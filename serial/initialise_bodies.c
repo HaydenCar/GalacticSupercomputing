@@ -1,35 +1,25 @@
 #include "vars_defs_functions.h"
 #include "math.h"
-
+#include "time.h"
 void initialise_bodies(BODY *bodies)
 {
-    if (num_bodies != 2){
-        return;
-    }
+    srand(time(NULL));
+
     
-    double mass = 1e6;
-    double distance = 200.0;
-    double G = 6.67430e-11;
-
-    bodies[0].x = -distance / 2.0;
-    bodies[0].y = 0.0;
-    bodies[1].x = distance / 2.0;
-    bodies[1].y = 0.0;
-
-    bodies[0].mass = mass;
-    bodies[1].mass = mass;
-
-    double v = sqrt(G * (mass + mass) / distance);
-
-    bodies[0].vx = 0.0;
-    bodies[0].vy = v * (mass / (mass + mass));
-    bodies[1].vx = 0.0;
-    bodies[1].vy = -v * (mass / (mass + mass));
-
-    for (int i = 0; i < num_bodies; i++)
-    {
-        bodies[i].fx = 0;
-        bodies[i].fy = 0;
-        bodies[i].total_force = 0;
-    }
+        for (int i = 0; i < num_bodies; i++)
+        {
+            // Set position (x, y) with random values
+            bodies[i].x = rand() % 1000;
+            bodies[i].y = rand() % 1000;
+    
+            // Generate velocity (vx, vy)
+            bodies[i].vx = ((float)(rand() % 200) - 100) / 10.0; // vx between -10.0 and +10.0
+            bodies[i].vy = ((float)(rand() % 200) - 100) / 10.0; // vy between -10.0 and +10.0
+    
+            // Set mass
+            bodies[i].mass = rand() % 1000 + 10;
+    
+            bodies[i].total_force = 0;
+    
+        }
 }
