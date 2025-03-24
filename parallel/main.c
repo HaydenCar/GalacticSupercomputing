@@ -2,17 +2,17 @@
 #include "timer.h"
 #include <mpi.h>
 
-int num_bodies = 2;
+int num_bodies = 2; // Total number of bodies
 int timestep = 0;
 
-int main(int argc, char *argv[])
+int main()
 {
 
     // Initialize MPI
-    MPI_Init(&argc, &argv);
+    MPI_Init;
 
     int rank, num_processes;
-    // Get the rank (ID) of the current process
+
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &num_processes);
 
@@ -22,7 +22,10 @@ int main(int argc, char *argv[])
     int start_index = rank * bodies_per_process + (rank < remainder ? rank : remainder);
     int local_num_bodies = bodies_per_process + (rank < remainder ? 1 : 0);
 
-    // prints rank and number
+    // debugging print to make sure even distrubution
+    printf("Rank %d: start_index = %d, local_num_bodies = %d\n", rank, start_index, local_num_bodies);
+
+    // prints rank and number of processes
     printf("Process %d of %d started.\n", rank, num_processes);
 
     // Delta time is important as the smaller the more accurate but takes way longer to run
@@ -33,9 +36,7 @@ int main(int argc, char *argv[])
 
     // Declare the bodies and allocate the memory
     BODY *bodies = (BODY *)malloc(num_bodies * sizeof(BODY));
-    BODY *local_bodies = (BODY *)malloc(local_num_bodies * sizeof(BODY));
-
-    if (bodies == NULL || local_bodies == NULL)
+    if (bodies == NULL)
     {
         printf("Failed to allocate memory for bodies");
         MPI_Abort(MPI_COMM_WORLD, 1);
@@ -49,16 +50,16 @@ int main(int argc, char *argv[])
         initialise_bodies(bodies);
     }
 
-    MPI_Bcast(bodies, num_bodies * sizeof(BODY), MPI_BYTE, 0, MPI_COMM_WORLD);
-    // Copy assigned portion of bodies
-    for (int i = 0; i < local_num_bodies; i++)
-    {
-        local_bodies[i] = bodies[start_index + i];
-    }
+    // turns Body into mpi datatype
+    MPI_Datatype MPI_BODY;
+    MPI_Type_contiguous(sizeof(BODY), MPI_BYTE, &MPI_BODY);
+    MPI_Type_commit(&MPI_BODY);
 
-    compute_force(bodies);
+    // broadcast array to other processes
+    MPI_Bcast(bodies, num_bodies, MPI_BODY, 0, MPI_COMM_WORLD);
+    MPI_Barrier(MPI_COMM_WORLD);
 
-    // open file for writing
+    // Open file for writing output
     FILE *fp = fopen("output.dat", "w");
     if (fp == NULL)
     {
@@ -70,29 +71,31 @@ int main(int argc, char *argv[])
     // World generation loop
     for (timestep = 0; timestep < 80000000; timestep++)
     {
-        if (timestep % 500000 == 0) // Only print every 100th timestep
+        if (timestep % 1000000 == 0) // Only print every 500,000th timestep
         {
             if (rank == 0)
             {
-                print_world(bodies, fp);
+                print_world(bodies, fp); // Print world state from process 0
             }
         }
 
-        // Update forces, velocities, and positions
-        // half
+        // Update forces, velocities, and positions for local bodies
+        // these have been mpi implemented?
+        // printf("Rank %d: Starting compute_force for timestep %d\n", rank, timestep);
 
-        ////////                need to parallelize only these
-        update_velocity(bodies, delta_time);
-        update_positions(bodies, delta_time);
-        compute_force(bodies);
-        // full
-        update_velocity(bodies, delta_time);
+        compute_force(bodies, rank, num_processes);
+        // printf("Rank %d: completed compute_force for timestep %d\n", rank, timestep);
 
-        ///////                 up to here
+        update_velocity(bodies, delta_time, rank, num_processes);
+        // printf("Rank %d: completed update velocity for timestep %d\n", rank, timestep);
 
-        // sync all data from bodies
-        MPI_Allgather(local_bodies, local_num_bodies * sizeof(BODY), MPI_BYTE,
-                      bodies, local_num_bodies * sizeof(BODY), MPI_BYTE, MPI_COMM_WORLD);
+        update_positions(bodies, delta_time, rank, num_processes);
+
+        compute_force(bodies, rank, num_processes);
+
+        // Full update step
+        update_velocity(bodies, delta_time, rank, num_processes);
+        MPI_Barrier(MPI_COMM_WORLD);
     }
 
     // Close the file, free memory and end program
@@ -102,11 +105,16 @@ int main(int argc, char *argv[])
     }
 
     free(bodies);
+
+    MPI_Type_free(&MPI_BODY);
+
     GET_TIME(finish);
     elapsed = finish - start;
-    printf("The code to be timed took %e seconds\n", elapsed);
+    printf("The code to be timed took %.6f seconds\n", elapsed);
 
-    printf("process %d reached MPI_Finalize()\n", rank);
+    printf("Process %d reached MPI_Finalize()\n", rank);
+    MPI_Barrier(MPI_COMM_WORLD);
+
     MPI_Finalize();
 
     int finalized;

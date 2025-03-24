@@ -1,8 +1,16 @@
 #include "vars_defs_functions.h"
+#include <mpi.h>
 
-void update_positions(BODY *bodies, double delta_time)
-{
-    for (int i = 0; i < num_bodies; i++)
+void update_positions(BODY *bodies, double delta_time, int rank, int size)
+{ // divides bodies by processes
+    int bodies_per_process = num_bodies / size;
+    // remainder
+    int remainder = num_bodies % size;
+
+    int start_index = rank * bodies_per_process + (rank < remainder ? rank : remainder);
+    int local_num_bodies = bodies_per_process + (rank < remainder ? 1 : 0);
+
+    for (int i = start_index; i < start_index + local_num_bodies; i++)
     {
 
         // retrieve current position of body n
@@ -21,4 +29,8 @@ void update_positions(BODY *bodies, double delta_time)
         bodies[i].x = new_position_x;
         bodies[i].y = new_position_y;
     }
+
+    MPI_Allgather(MPI_IN_PLACE, local_num_bodies * sizeof(BODY), MPI_BYTE,
+                  bodies, local_num_bodies * sizeof(BODY), MPI_BYTE, MPI_COMM_WORLD);
+    MPI_Barrier(MPI_COMM_WORLD);
 }

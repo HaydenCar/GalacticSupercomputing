@@ -3,10 +3,11 @@
 
 void initialise_bodies(BODY *bodies)
 {
-    if (num_bodies != 2){
+    if (num_bodies != 2)
+    {
         return;
     }
-    
+
     double mass = 1e6;
     double distance = 200.0;
     double G = 6.67430e-11;
