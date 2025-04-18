@@ -1,11 +1,16 @@
 #include "vars_defs_functions.h"
 #include "timer.h"
 
-int num_bodies = 4;
+int num_bodies = 8;
 int timestep = 0;
+double G = 6.67430e-11;
+
+OCTREE octree;
 
 int main()
 {
+
+
     // Delta time is important as the smaller the more accurate but takes way longer to run
     double delta_time = 0.1;
 
@@ -23,8 +28,11 @@ int main()
 
     // initialise the bodies with random nums
     initialise_bodies(bodies);
-    create_octree(bodies);
-    compute_force(bodies);
+
+
+
+    create_octree(&octree, bodies);
+    compute_force(&octree,bodies);
 
     // open file for writing
     FILE *fp = fopen("output.dat", "w");
@@ -36,7 +44,7 @@ int main()
 
     // World generation loop
     // for (timestep = 0; timestep < 80000000; timestep++)
-    for (timestep = 0; timestep < 2; timestep++)
+    for (timestep = 0; timestep < 10; timestep++)
 
     {
         // if (timestep % 500000 == 0) // Only print every 100th timestep
@@ -48,8 +56,12 @@ int main()
         // half
         update_velocity(bodies, delta_time);
         update_positions(bodies, delta_time);
-        compute_force(bodies);
-        // full
+        clear_tree(octree.root);
+
+        create_octree(&octree,bodies);
+
+        compute_force(&octree,bodies);
+        // full32
         update_velocity(bodies, delta_time);
     }
 
