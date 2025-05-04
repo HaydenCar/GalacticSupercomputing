@@ -7,12 +7,17 @@ void update_velocity(BODY *bodies)
     for (int i = 0; i < num_bodies; i++)
     {
 
-        // Compute the acceleration in x and y dir
-        double ax = bodies[i].fx / bodies[i].mass; // Acceleration in x direction
-        double ay = bodies[i].fy / bodies[i].mass; // Acceleration in y direction
 
-        // Update the velocity of body n
-        bodies[i].vx += ax * (DELTA_TIME / half); // New velocity in x direction
-        bodies[i].vy += ay * (DELTA_TIME / half); // New velocity in y direction
+        // compute the acceleration in x and y dir
+        double ax = bodies[i].fx / bodies[i].mass; // acceleration in x direction
+        double ay = bodies[i].fy / bodies[i].mass; // acceleration in y direction
+        double az = bodies[i].fz / bodies[i].mass; // acceleration in y direction
+
+        // update the velocity of body n
+        bodies[i].vx += ax * (delta_time / 2.0); // new velocity in x direction
+        bodies[i].vy += ay * (delta_time / 2.0); // new velocity in y direction
+        bodies[i].vz += az * (delta_time / 2.0); // new velocity in y direction
+
+
     }
 }

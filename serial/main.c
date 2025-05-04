@@ -1,16 +1,29 @@
 #include "vars_defs_functions.h"
 #include "timer.h"
 
+
 int num_bodies = 3;
+
 int timestep = 0;
+double G = 6.67430e-11;
+
+OCTREE octree;
 
 int main()
 {
+
+
+
+    // Delta time is important as the smaller the more accurate but takes way longer to run
+    double delta_time = 0.1;
+
+
     double start, finish, elapsed;
     GET_TIME(start);
 
     // Declare the bodies and allocate the memory
     BODY *bodies = (BODY *)malloc(num_bodies * sizeof(BODY));
+    
     if (bodies == NULL)
     {
         printf("Failed to allocate memory for bodies");
@@ -19,7 +32,11 @@ int main()
 
     // Initialise the bodies with random nums
     initialise_bodies(bodies);
-    compute_force(bodies);
+
+
+
+    create_octree(&octree, bodies);
+    compute_force(&octree,bodies);
 
     // Open file for writing
     FILE *fp = fopen("output.dat", "w");
@@ -34,20 +51,28 @@ int main()
     timestep++;
 
     // World generation loop
+
     for (; timestep < MAX_STEP; timestep++)
     {
         if (timestep % PRINT_INTERVAL == 0) // Only print every 100th timestep
         {
+
             print_world(bodies, fp);
-        }
+        // }
 
         // Update forces, velocities, and positions
-        // Half
-        update_velocity(bodies);
-        update_positions(bodies);
-        compute_force(bodies);
-        // Full
-        update_velocity(bodies);
+
+        // half
+        update_velocity(bodies, delta_time);
+        update_positions(bodies, delta_time);
+        clear_tree(octree.root);
+
+        create_octree(&octree,bodies);
+
+        compute_force(&octree,bodies);
+        // full32
+        update_velocity(bodies, delta_time);
+
     }
 
     // Close the file, free memory and end program

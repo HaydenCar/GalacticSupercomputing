@@ -1,6 +1,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <stdbool.h>
+
+/////////////////////////
+// MACRO DEFINITIONS
+/////////////////////////
+
+#define WorldMinX -10000
+#define WorldMaxX 10000
+#define WorldMinY -10000
+#define WorldMaxY 10000
+#define WorldMinZ -10000
+#define WorldMaxZ 10000
+
+extern double G;
+
 
 /////////////////////////
 // BODY STRUCTS
@@ -20,7 +35,7 @@ typedef struct body
     double fy; // force in y dir
     double fz;
     double acceleration;
-    char address[];
+    // char address[];
 } BODY;
 
 /////////////////////////
@@ -40,25 +55,29 @@ typedef struct aabb
 } AABB;
 
 // OCTREE NODE
-typedef struct node
+typedef struct Node
 {
-    AABB aabb;
-    double xp;
-    double yp;
-    double zp;
-    BODY **bodies;
-    double mass;
-    uint16_t bodyCount;
-    char c;
-    struct NODE *leafs[8];
-} NODE;
+    AABB bounds;
+    struct Node* children[8];
+    struct Node* parent;
+    double COMx,COMy,COMz; //Centre Of Mass
+    BODY* body; // the node is not split and contains a body
+    double Totalmass;
+    bool hasChildren; // the node is split and does not contain a single body
+
+    // int addressNum; // anywhere from 0-7 instead of a-h (easier to loop through) for now doing quad so 0-3
+} Node;
+
+
 
 // THE OCTREE
 typedef struct octree
 {
-    NODE root;
+    Node* root;
 } OCTREE;
 
+
+extern OCTREE octree;
 /////////////////////////
 // EXTERN VARS
 /////////////////////////
@@ -75,6 +94,8 @@ extern int timestep;   // The current step
 #define DELTA_TIME 0.1        // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
 
+
+
 /////////////////////////
 // FUNCTIONS
 /////////////////////////
@@ -82,5 +103,18 @@ extern int timestep;   // The current step
 void initialise_bodies(BODY *bodies);
 void update_positions(BODY *bodies);
 void print_world(BODY *bodies, FILE *fp);
-void update_velocity(BODY *bodies);
-void compute_force(BODY *bodies);
+
+void update_velocity(BODY *bodies, double delta_time);
+void compute_force(OCTREE* octree,BODY *bodies);
+
+
+void create_octree(OCTREE *octree, BODY *bodies);
+Node* createNode(AABB bounds,Node* parent);
+void InsertBody(Node* node, BODY* body);
+void divideNode(Node* node);
+Node* FindNext(Node* node, BODY *body);
+void UpdateParent(Node *node);
+void test_tree(Node *node, int depth);
+void clear_tree(Node *node);
+void barnesCalc(BODY *body, Node *node);
+
