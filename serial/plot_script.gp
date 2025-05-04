@@ -5,9 +5,10 @@ set xlabel 'X Position'
 set ylabel 'Y Position'
 set grid
 
-set xrange [-300:300]  # Adjusted for two-body system
-set yrange [-300:300]
+set xrange [-1.596e11:1.596e11]  
+set yrange [-1.596e11:1.596e11]
 
 # Plot each body with a different color
-plot 'output.dat' using ($3==0 ? $4 : 1/0):($3==0 ? $5 : 1/0) with linespoints linecolor rgb "red" title 'Body 0', \
-     'output.dat' using ($3==1 ? $4 : 1/0):($3==1 ? $5 : 1/0) with linespoints linecolor rgb "green" title 'Body 1'
+plot 'output.dat' using ($2==0 ? $3 : 1/0):($2==0 ? $4 : 1/0) with linespoints linecolor rgb "red" title 'Sun', \
+     'output.dat' using ($2==1 ? $3 : 1/0):($2==1 ? $4 : 1/0) with linespoints linecolor rgb "green" title 'Earth', \
+     'output.dat' using ($2==2 ? $3 : 1/0):($2==2 ? $4 : 1/0) with linespoints linecolor rgb "blue" title 'Moon'

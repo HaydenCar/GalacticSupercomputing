@@ -82,8 +82,17 @@ extern OCTREE octree;
 // EXTERN VARS
 /////////////////////////
 
-extern int num_bodies;
-extern int timestep;
+extern int num_bodies; // The amount of bodies in the simulation
+extern int timestep;   // The current step
+
+/////////////////////////
+// CONST VALUES
+/////////////////////////
+
+#define MAX_STEP 350000000    // Max amount of steps in the simulation
+#define PRINT_INTERVAL 499999 // The data is only stored in intervals due to storage and ram
+#define DELTA_TIME 0.1        // Delta time is important as the smaller the more accurate but takes way longer to run
+#define GRAVITY 6.67430e-11
 
 
 
@@ -92,8 +101,9 @@ extern int timestep;
 /////////////////////////
 
 void initialise_bodies(BODY *bodies);
-void update_positions(BODY *bodies, double delta_time);
+void update_positions(BODY *bodies);
 void print_world(BODY *bodies, FILE *fp);
+
 void update_velocity(BODY *bodies, double delta_time);
 void compute_force(OCTREE* octree,BODY *bodies);
 
@@ -107,3 +117,4 @@ void UpdateParent(Node *node);
 void test_tree(Node *node, int depth);
 void clear_tree(Node *node);
 void barnesCalc(BODY *body, Node *node);
+

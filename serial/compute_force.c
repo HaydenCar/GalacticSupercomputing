@@ -3,6 +3,7 @@
 
 
 void compute_force(OCTREE* octree,BODY *bodies)
+
 {
     for (int i = 0; i < num_bodies; i++)
     {
@@ -13,6 +14,13 @@ void compute_force(OCTREE* octree,BODY *bodies)
         for (int j = 0; j < num_bodies; j++)
         {
 
+            if (i == j)
+            {
+                // Logic to handle collison here!!
+                continue;
+            }
+
+
             bodies[i].fx = 0;
             bodies[i].fy = 0;
             bodies[i].fz = 0;
@@ -20,6 +28,7 @@ void compute_force(OCTREE* octree,BODY *bodies)
             // {
             //     continue;
             // }
+
 
             // double dx = bodies[j].x - bodies[i].x;
             // double dy = bodies[j].y - bodies[i].y;
@@ -34,6 +43,9 @@ void compute_force(OCTREE* octree,BODY *bodies)
             // bodies[i].fz += force * (dz / distance);
 
             barnesCalc(&bodies[i], octree->root);
+
+            //double force = GRAVITY * ((bodies[j].mass * bodies[i].mass) / (distance * distance));
+
 
         }
     }
