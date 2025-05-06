@@ -18,9 +18,9 @@ void update_positions(BODY *bodies)
 
 
         // calculate new position using formula
-        double new_position_x = current_position_x + (current_velocity_x * delta_time);
-        double new_position_y = current_position_y + (current_velocity_y * delta_time);
-        double new_position_z = current_position_z + (current_velocity_z * delta_time);
+        double new_position_x = current_position_x + (current_velocity_x * DELTA_TIME);
+        double new_position_y = current_position_y + (current_velocity_y * DELTA_TIME);
+        double new_position_z = current_position_z + (current_velocity_z * DELTA_TIME);
 
 
         // Update body n position to new position

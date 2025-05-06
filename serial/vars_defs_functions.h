@@ -6,7 +6,7 @@
 /////////////////////////
 // MACRO DEFINITIONS
 /////////////////////////
-
+#define num_bodies 3
 #define WorldMinX -10000
 #define WorldMaxX 10000
 #define WorldMinY -10000
@@ -82,7 +82,7 @@ extern OCTREE octree;
 // EXTERN VARS
 /////////////////////////
 
-extern int num_bodies; // The amount of bodies in the simulation
+
 extern int timestep;   // The current step
 
 /////////////////////////
@@ -104,7 +104,7 @@ void initialise_bodies(BODY *bodies);
 void update_positions(BODY *bodies);
 void print_world(BODY *bodies, FILE *fp);
 
-void update_velocity(BODY *bodies, double delta_time);
+void update_velocity(BODY *bodies);
 void compute_force(OCTREE* octree,BODY *bodies);
 
 

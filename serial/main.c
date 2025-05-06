@@ -2,7 +2,7 @@
 #include "timer.h"
 
 
-int num_bodies = 3;
+
 
 int timestep = 0;
 double G = 6.67430e-11;
@@ -39,7 +39,7 @@ int main()
     compute_force(&octree,bodies);
 
     // Open file for writing
-    FILE *fp = fopen("output.dat", "w");
+    FILE *fp = fopen("../Engine/Dependencies/output.dat", "w");
     if (fp == NULL)
     {
         printf("Failed to open file for writing");
@@ -63,18 +63,18 @@ int main()
         // Update forces, velocities, and positions
 
         // half
-        update_velocity(bodies, delta_time);
-        update_positions(bodies, delta_time);
+        update_velocity(bodies);
+        update_positions(bodies);
         clear_tree(octree.root);
 
         create_octree(&octree,bodies);
 
         compute_force(&octree,bodies);
         // full32
-        update_velocity(bodies, delta_time);
+        update_velocity(bodies);
 
     }
-
+    }
     // Close the file, free memory and end program
     fclose(fp);
     free(bodies);
