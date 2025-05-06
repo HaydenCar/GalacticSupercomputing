@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = g++
-CFLAGS = -Wall -g -Iinclude
+CFLAGS = -Wall -g 
 LDFLAGS = -lglfw -lGL -lGLEW -lm  # Add GLFW and OpenGL dependencies
 
 # Target executable
