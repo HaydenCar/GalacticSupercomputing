@@ -20,9 +20,8 @@ void update_velocity(BODY *bodies, double delta_time, int rank, int size)
         // update the velocity of body n
         bodies[i].vx += ax * (delta_time / 2.0); // new velocity in x direction
         bodies[i].vy += ay * (delta_time / 2.0); // new velocity in y direction
-
-        MPI_Allgather(MPI_IN_PLACE, local_num_bodies * sizeof(BODY), MPI_BYTE,
-                      bodies, local_num_bodies * sizeof(BODY), MPI_BYTE, MPI_COMM_WORLD);
-        MPI_Barrier(MPI_COMM_WORLD);
     }
+    MPI_Allgather(MPI_IN_PLACE, local_num_bodies * sizeof(BODY), MPI_BYTE,
+                  bodies, local_num_bodies * sizeof(BODY), MPI_BYTE, MPI_COMM_WORLD);
+    MPI_Barrier(MPI_COMM_WORLD);
 }

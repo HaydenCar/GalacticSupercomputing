@@ -2,14 +2,14 @@
 #include "timer.h"
 #include <mpi.h>
 
-int num_bodies = 2; // Total number of bodies
+int num_bodies = 3; // Total number of bodies
 int timestep = 0;
 
-int main()
+int main(int argc, char *argv[])
 {
 
     // Initialize MPI
-    MPI_Init;
+    MPI_Init(&argc, &argv);
 
     int rank, num_processes;
 
@@ -21,6 +21,14 @@ int main()
 
     int start_index = rank * bodies_per_process + (rank < remainder ? rank : remainder);
     int local_num_bodies = bodies_per_process + (rank < remainder ? 1 : 0);
+
+    if (local_num_bodies == 0)
+    {
+        printf("Rank %d: No work assigned. Skipping computations.\n", rank);
+        MPI_Barrier(MPI_COMM_WORLD); // Ensure all processes sync
+        MPI_Finalize();              // Clean exit for idle processes
+        return 0;                    // End the process
+    }
 
     // debugging print to make sure even distrubution
     printf("Rank %d: start_index = %d, local_num_bodies = %d\n", rank, start_index, local_num_bodies);
@@ -57,7 +65,8 @@ int main()
 
     // broadcast array to other processes
     MPI_Bcast(bodies, num_bodies, MPI_BODY, 0, MPI_COMM_WORLD);
-    MPI_Barrier(MPI_COMM_WORLD);
+
+    // MPI_Barrier(MPI_COMM_WORLD);
 
     // Open file for writing output
     FILE *fp = fopen("output.dat", "w");
@@ -79,22 +88,26 @@ int main()
             }
         }
 
-        // Update forces, velocities, and positions for local bodies
-        // these have been mpi implemented?
-        // printf("Rank %d: Starting compute_force for timestep %d\n", rank, timestep);
+        if (local_num_bodies > 0)
+        {
+            // Update forces, velocities, and positions for local bodies
+            // these have been mpi implemented?
+            // printf("Rank %d: Starting compute_force for timestep %d\n", rank, timestep);
 
-        compute_force(bodies, rank, num_processes);
-        // printf("Rank %d: completed compute_force for timestep %d\n", rank, timestep);
+            compute_force(bodies, rank, num_processes);
+            // printf("Rank %d: completed compute_force for timestep %d\n", rank, timestep);
 
-        update_velocity(bodies, delta_time, rank, num_processes);
-        // printf("Rank %d: completed update velocity for timestep %d\n", rank, timestep);
+            update_velocity(bodies, delta_time, rank, num_processes);
+            // printf("Rank %d: completed update velocity for timestep %d\n", rank, timestep);
 
-        update_positions(bodies, delta_time, rank, num_processes);
+            update_positions(bodies, delta_time, rank, num_processes);
 
-        compute_force(bodies, rank, num_processes);
+            compute_force(bodies, rank, num_processes);
 
-        // Full update step
-        update_velocity(bodies, delta_time, rank, num_processes);
+            // Full update step
+            update_velocity(bodies, delta_time, rank, num_processes);
+        }
+
         MPI_Barrier(MPI_COMM_WORLD);
     }
 
