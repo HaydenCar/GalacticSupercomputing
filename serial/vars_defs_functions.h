@@ -7,12 +7,12 @@
 // MACRO DEFINITIONS
 /////////////////////////
 #define num_bodies 3
-#define WorldMinX -10000
-#define WorldMaxX 10000
-#define WorldMinY -10000
-#define WorldMaxY 10000
-#define WorldMinZ -10000
-#define WorldMaxZ 10000
+#define WorldMinX -2e11
+#define WorldMaxX 2e11
+#define WorldMinY -2e11
+#define WorldMaxY 2e11
+#define WorldMinZ -2e11
+#define WorldMaxZ 2e11
 
 extern double G;
 

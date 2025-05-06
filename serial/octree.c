@@ -213,7 +213,7 @@ void create_octree(OCTREE* octree, BODY *bodies)
 {
 
 
-    printf("\nNOW STARTING NEXT TREE\n");
+    // printf("\nNOW STARTING NEXT TREE\n");
 
     AABB worldBounds;
 
@@ -232,7 +232,7 @@ void create_octree(OCTREE* octree, BODY *bodies)
 
         InsertBody(octree->root, &bodies[i]);
 
-        test_tree(octree->root, 0);
+        // test_tree(octree->root, 0);
     }
 
 }
