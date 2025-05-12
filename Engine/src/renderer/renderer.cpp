@@ -103,7 +103,8 @@ void Renderer::load_data(const std::string& filename) {
     unsigned int timestep;
     int body_id;
     double x, y, z;
-    float normalise = 1e-10f;
+    float normaliseSun = 1e-8f;    // For the Sun
+    float normalisePlanets = 1e-11f; // For Earth/Moon
 
     bodies.clear();
     currentTimestep = 0;
@@ -111,6 +112,7 @@ void Renderer::load_data(const std::string& filename) {
 
     // Figured this out from here read this!!!: https://stackoverflow.com/questions/43956124/c-while-loop-to-read-from-input-file
     while (file >> timestep >> body_id >> x >> y >> z) {
+        float normalise = (body_id == 0) ? normaliseSun : normalisePlanets;
         bodies.push_back({body_id, glm::vec3(x * normalise, y * normalise, z * normalise)});
     }
     std::cout << "Loaded " << bodies.size() << " bodies" << std::endl;
@@ -173,14 +175,16 @@ void Renderer::render_frame() {
     glBindVertexArray(VAO);
     
     // Camera setup
-    float cameraDistance = 30.0f;
+    float cameraDistance = 300.0f;
     float cameraX = 0.0f;
     float cameraZ = cameraDistance;
 
     // Look at the center of your data
+    glm::vec3 centerPoint(0.0f, 0.0f, bodies[0].position.z); // Use first body's z position
+
     glm::mat4 view = glm::lookAt(
         glm::vec3(cameraX, cameraDistance * 0.5f, cameraZ),
-        glm::vec3(0.0f, 0.0f, 0.0f),
+        centerPoint,
         glm::vec3(0.0f, 1.0f, 0.0f)
     );
 
@@ -217,9 +221,18 @@ void Renderer::render_frame() {
         glm::mat4 model = glm::mat4(1.0f);
             
         float scale;
-        if (body.id == 0) scale = 3.0f;
-        else if (body.id == 1) scale = 1.5f;
-        else if (body.id == 2) scale = 1.5f;
+        if (body.id == 0) {
+            scale = 3.0f;  // Sun
+        } else if (body.id == 1) {
+            scale = 1.0f;  // Earth
+            body.position *= 0.1f;  // Additional scaling for Earth
+        } else if (body.id == 2) {
+            scale = 0.5f;  // Moon
+            body.position *= 0.1f;  // Additional scaling for Moon
+        } else {
+            scale = 1.0f;
+            body.position *= 0.1f;
+        }
                 
         model = glm::translate(model, body.position);
         model = glm::scale(model, glm::vec3(scale));
@@ -233,6 +246,9 @@ void Renderer::render_frame() {
         }
         else if (body.id == 2) {
             color = glm::vec3(0.8f, 0.8f, 0.8f);
+        }
+        else{
+            color = glm::vec3(1.0f, 1.0f, 1.0f);
         }
         ourShader.setVec3("color", color);
 
