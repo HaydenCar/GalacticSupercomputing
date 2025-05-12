@@ -14,6 +14,7 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 ### Requirements to run code:
 - `Linux / MacOs`
 - `gnuplot`
+- `glew`
 
 ### Commands to run code:
 - `cd serial`
