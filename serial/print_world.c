@@ -7,7 +7,7 @@ void print_world(BODY *bodies, FILE *fp)
     {
 
 
-        fprintf(fp, "%d %d %.2f %.2f\n", timestep, i, bodies[i].x, bodies[i].y);
+        fprintf(fp, "%d %d %f %f\n", timestep, i, bodies[i].x, bodies[i].y);
 
 
         // fprintf(fp, "TimeStep %d %d x: %.2f y: %.2f z: %.2f \n", timestep, i, bodies[i].x, bodies[i].y, bodies[i].z);

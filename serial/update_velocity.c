@@ -1,6 +1,6 @@
 #include "vars_defs_functions.h"
 
-void update_velocity(BODY *bodies)
+void update_velocity(BODY *bodies, double fraction)
 {
     double half = 2.0;
     // Loop through all bodies and calculate
@@ -14,9 +14,13 @@ void update_velocity(BODY *bodies)
         double az = bodies[i].fz / bodies[i].mass; // acceleration in y direction
 
         // update the velocity of body n
-        bodies[i].vx += ax * (DELTA_TIME / 2.0); // new velocity in x direction
-        bodies[i].vy += ay * (DELTA_TIME / 2.0); // new velocity in y direction
-        bodies[i].vz += az * (DELTA_TIME / 2.0); // new velocity in y direction
+        // bodies[i].vx += ax * (DELTA_TIME / 2.0); // new velocity in x direction
+        // bodies[i].vy += ay * (DELTA_TIME / 2.0); // new velocity in y direction
+        // bodies[i].vz += az * (DELTA_TIME / 2.0); // new velocity in y direction
+
+        bodies[i].vx += ax * DELTA_TIME * fraction;
+        bodies[i].vy += ay * DELTA_TIME * fraction;
+        bodies[i].vz += az * DELTA_TIME * fraction;
 
 
     }

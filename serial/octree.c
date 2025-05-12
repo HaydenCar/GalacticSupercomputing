@@ -40,6 +40,7 @@ void UpdateParent(Node *node)
 
 void divideNode(Node *node)
 {
+    if ((node->bounds.maxX - node->bounds.minX) < 1e6) return;
     double midX = (node->bounds.minX + node->bounds.maxX) / 2;
     double midY = (node->bounds.minY + node->bounds.maxY) / 2;
     double midZ = (node->bounds.minZ + node->bounds.maxZ) / 2;

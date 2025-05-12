@@ -88,10 +88,11 @@ extern int timestep;   // The current step
 /////////////////////////
 // CONST VALUES
 /////////////////////////
+#define MAX_STEP 350000   // Max amount of steps in the simulation
 
-#define MAX_STEP 350000000    // Max amount of steps in the simulation
+// #define MAX_STEP 350000000   // Max amount of steps in the simulation
 #define PRINT_INTERVAL 499999 // The data is only stored in intervals due to storage and ram
-#define DELTA_TIME 0.1        // Delta time is important as the smaller the more accurate but takes way longer to run
+#define DELTA_TIME 0.2        // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
 
 
@@ -104,7 +105,7 @@ void initialise_bodies(BODY *bodies);
 void update_positions(BODY *bodies);
 void print_world(BODY *bodies, FILE *fp);
 
-void update_velocity(BODY *bodies);
+void update_velocity(BODY *bodies, double fraction);
 void compute_force(OCTREE* octree,BODY *bodies);
 
 

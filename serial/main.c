@@ -58,23 +58,20 @@ int main()
         {
 
             print_world(bodies, fp);
-        // }
+        }
 
         // Update forces, velocities, and positions
 
-        // half
-        update_velocity(bodies);
-        update_positions(bodies);
+        update_velocity(bodies, 0.5);         // half step
+        update_positions(bodies);            // full step
         clear_tree(octree.root);
-
-        create_octree(&octree,bodies);
-
-        compute_force(&octree,bodies);
-        // full32
-        update_velocity(bodies);
+        octree.root = NULL;
+        create_octree(&octree, bodies);
+        compute_force(&octree, bodies);
+        update_velocity(bodies, 0.5);         // second half step
 
     }
-    }
+    
     // Close the file, free memory and end program
     fclose(fp);
     free(bodies);
