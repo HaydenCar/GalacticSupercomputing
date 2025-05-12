@@ -20,7 +20,7 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 - `cd serial`
 - `make`
 - `./main`
-- `gnuplot plot_script.gp`
+- `(optional) gnuplot plot_script.gp`
 
 ### Results
 ![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/serial/n_body_simulation.png)
