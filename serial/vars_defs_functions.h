@@ -16,7 +16,6 @@
 
 extern double G;
 
-
 /////////////////////////
 // BODY STRUCTS
 /////////////////////////
@@ -58,44 +57,36 @@ typedef struct aabb
 typedef struct Node
 {
     AABB bounds;
-    struct Node* children[8];
-    struct Node* parent;
-    double COMx,COMy,COMz; //Centre Of Mass
-    BODY* body; // the node is not split and contains a body
+    struct Node *children[8];
+    struct Node *parent;
+    double COMx, COMy, COMz; // Centre Of Mass
+    BODY *body;              // the node is not split and contains a body
     double Totalmass;
     bool hasChildren; // the node is split and does not contain a single body
 
     // int addressNum; // anywhere from 0-7 instead of a-h (easier to loop through) for now doing quad so 0-3
 } Node;
 
-
-
 // THE OCTREE
 typedef struct octree
 {
-    Node* root;
+    Node *root;
 } OCTREE;
-
 
 extern OCTREE octree;
 /////////////////////////
 // EXTERN VARS
 /////////////////////////
 
-
-extern int timestep;   // The current step
+extern int timestep; // The current step
 
 /////////////////////////
 // CONST VALUES
 /////////////////////////
-#define MAX_STEP 350000   // Max amount of steps in the simulation
-
-// #define MAX_STEP 350000000   // Max amount of steps in the simulation
-#define PRINT_INTERVAL 499999 // The data is only stored in intervals due to storage and ram
-#define DELTA_TIME 0.2        // Delta time is important as the smaller the more accurate but takes way longer to run
+#define MAX_STEP 2000000     // Max amount of steps in the simulation
+#define PRINT_INTERVAL 50000 // The data is only stored in intervals due to storage and ram
+#define DELTA_TIME 0.2       // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
-
-
 
 /////////////////////////
 // FUNCTIONS
@@ -106,16 +97,14 @@ void update_positions(BODY *bodies);
 void print_world(BODY *bodies, FILE *fp);
 
 void update_velocity(BODY *bodies, double fraction);
-void compute_force(OCTREE* octree,BODY *bodies);
-
+void compute_force(OCTREE *octree, BODY *bodies);
 
 void create_octree(OCTREE *octree, BODY *bodies);
-Node* createNode(AABB bounds,Node* parent);
-void InsertBody(Node* node, BODY* body);
-void divideNode(Node* node);
-Node* FindNext(Node* node, BODY *body);
+Node *createNode(AABB bounds, Node *parent);
+void InsertBody(Node *node, BODY *body);
+void divideNode(Node *node);
+Node *FindNext(Node *node, BODY *body);
 void UpdateParent(Node *node);
 void test_tree(Node *node, int depth);
 void clear_tree(Node *node);
 void barnesCalc(BODY *body, Node *node);
-

@@ -1,7 +1,6 @@
 #include "vars_defs_functions.h"
 #include "math.h"
 
-
 void barnesCalc(BODY *body, Node *node)
 {
     if (node == NULL || (node->body == body && !node->hasChildren))
@@ -15,7 +14,7 @@ void barnesCalc(BODY *body, Node *node)
     double s = node->bounds.maxX - node->bounds.minX; // length of the cube
     double theta = 0.5;
 
-    // is this node far enough? s/d < theta 
+    // is this node far enough? s/d < theta
     if (!node->hasChildren || (s / distance < theta))
     {
         if (node->Totalmass > 0 && node->body != body)

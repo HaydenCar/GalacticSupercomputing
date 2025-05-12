@@ -19,10 +19,6 @@ Node *createNode(AABB bounds, Node *parent)
     return node;
 }
 
-
-
-
-
 void UpdateParent(Node *node)
 {
     Node *parentNode = node->parent;
@@ -40,7 +36,10 @@ void UpdateParent(Node *node)
 
 void divideNode(Node *node)
 {
-    if ((node->bounds.maxX - node->bounds.minX) < 1e6) return;
+    if ((node->bounds.maxX - node->bounds.minX) < 1e6)
+    {
+        return;
+    }
     double midX = (node->bounds.minX + node->bounds.maxX) / 2;
     double midY = (node->bounds.minY + node->bounds.maxY) / 2;
     double midZ = (node->bounds.minZ + node->bounds.maxZ) / 2;
@@ -51,7 +50,7 @@ void divideNode(Node *node)
         {node->bounds.maxX, midY, midZ, midX, node->bounds.minY, node->bounds.minZ}, // 1: Bottom-right-back
         {midX, node->bounds.maxY, midZ, node->bounds.minX, midY, node->bounds.minZ}, // 2: Top-left-back
         {node->bounds.maxX, node->bounds.maxY, midZ, midX, midY, node->bounds.minZ}, // 3: Top-right-back
-    
+
         // Front (Z max)
         {midX, midY, node->bounds.maxZ, node->bounds.minX, node->bounds.minY, midZ}, // 4: Bottom-left-front
         {node->bounds.maxX, midY, node->bounds.maxZ, midX, node->bounds.minY, midZ}, // 5: Bottom-right-front
@@ -66,22 +65,17 @@ void divideNode(Node *node)
 
     node->hasChildren = true;
     for (int i = 0; i < 8; i++)
-{
-    node->children[i] = createNode(childBounds[i], node);
-    if (node->children[i] == NULL)
     {
-        printf("Failed to create child node %d\n", i);
+        node->children[i] = createNode(childBounds[i], node);
+        if (node->children[i] == NULL)
+        {
+            printf("Failed to create child node %d\n", i);
+        }
     }
-  
-}
-
-
-
 }
 
 Node *FindNext(Node *node, BODY *body)
 {
-
     bool found = false;
 
     Node *nextNode;
@@ -91,7 +85,7 @@ Node *FindNext(Node *node, BODY *body)
         AABB bounds = current->bounds;
         if (body->x <= bounds.maxX && body->x >= bounds.minX &&
             body->y <= bounds.maxY && body->y >= bounds.minY &&
-            body->z <= bounds.maxZ && body->z >= bounds.minZ) 
+            body->z <= bounds.maxZ && body->z >= bounds.minZ)
         {
             found = true;
             nextNode = current;
@@ -107,11 +101,8 @@ Node *FindNext(Node *node, BODY *body)
 
 void InsertBody(Node *node, BODY *body)
 {
-
     if (node->body == NULL && !node->hasChildren) // check if the node is capable of containing a body
     {
-
-
         node->body = body;
         node->COMx = body->x;
         node->COMy = body->y;
@@ -125,7 +116,6 @@ void InsertBody(Node *node, BODY *body)
     }
     else
     {
-
         Node *nextNode;
         if (!node->hasChildren)
         {
@@ -136,26 +126,22 @@ void InsertBody(Node *node, BODY *body)
             InsertBody(nextNode, node->body);
             nextNode = FindNext(node, body);
             InsertBody(nextNode, body);
-            
+
             // will set parent body to null and set the new body in the new node
         }
 
-        else{
-
+        else
+        {
             // the node has children
-
             nextNode = FindNext(node, body);
 
             InsertBody(nextNode, body);
             // will set parent body to null and set the new body in the new node
-
         }
     }
 }
 void test_tree(Node *node, int depth)
 {
-
-
     if (node == NULL)
         return;
 
@@ -168,7 +154,6 @@ void test_tree(Node *node, int depth)
     for (int i = 0; i < depth; i++)
         printf("  ");
 
-
     for (int i = 0; i < depth; i++)
         printf("  ");
     printf("COM: (%.2f, %.2f, %.2f), Mass: %.2f\n", node->COMx, node->COMy, node->COMz, node->Totalmass);
@@ -178,7 +163,7 @@ void test_tree(Node *node, int depth)
     if (node->body != NULL)
     {
         printf("Contains body at (%.2f, %.2f,%.2f), mass = %.2f\n",
-               node->body->x, node->body->y,node->body->z, node->body->mass);
+               node->body->x, node->body->y, node->body->z, node->body->mass);
     }
     else if (!node->hasChildren)
     {
@@ -207,15 +192,9 @@ void test_tree(Node *node, int depth)
     }
 }
 
-
-
-
-void create_octree(OCTREE* octree, BODY *bodies)
+void create_octree(OCTREE *octree, BODY *bodies)
 {
-
-
     // printf("\nNOW STARTING NEXT TREE\n");
-
     AABB worldBounds;
 
     worldBounds.maxX = WorldMaxX;
@@ -227,37 +206,29 @@ void create_octree(OCTREE* octree, BODY *bodies)
 
     octree->root = createNode(worldBounds, NULL);
 
-
     for (int i = 0; i < num_bodies; i++)
     {
-
         InsertBody(octree->root, &bodies[i]);
-
         // test_tree(octree->root, 0);
     }
-
 }
-
 
 void clear_tree(Node *node)
 {
     if (node == NULL)
-    return;
+        return;
 
-if (node->hasChildren)
-{
-    for (int i = 0; i < 8; i++)
+    if (node->hasChildren)
     {
-        if (node->children[i] != NULL)
+        for (int i = 0; i < 8; i++)
         {
-            clear_tree(node->children[i]); 
-            node->children[i] = NULL;
+            if (node->children[i] != NULL)
+            {
+                clear_tree(node->children[i]);
+                node->children[i] = NULL;
+            }
         }
     }
+    node->body = NULL;
+    free(node);
 }
-
-node->body = NULL;
-
-free(node);
-}
-

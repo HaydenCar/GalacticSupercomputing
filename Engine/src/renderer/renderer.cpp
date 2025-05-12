@@ -102,8 +102,7 @@ void Renderer::load_data(const std::string& filename) {
 
     unsigned int timestep;
     int body_id;
-    double x, y;
-    double z = 0;
+    double x, y, z;
     float normalise = 1e-10f;
 
     bodies.clear();
@@ -111,8 +110,8 @@ void Renderer::load_data(const std::string& filename) {
     lastFrameTime = 0.0f;
 
     // Figured this out from here read this!!!: https://stackoverflow.com/questions/43956124/c-while-loop-to-read-from-input-file
-    while (file >> timestep >> body_id >> x >> y) {
-        bodies.push_back({body_id, glm::vec3(x * normalise, y * normalise, z)});
+    while (file >> timestep >> body_id >> x >> y >> z) {
+        bodies.push_back({body_id, glm::vec3(x * normalise, y * normalise, z * normalise)});
     }
     std::cout << "Loaded " << bodies.size() << " bodies" << std::endl;
 }
