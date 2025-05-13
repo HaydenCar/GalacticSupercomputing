@@ -224,7 +224,7 @@ void Renderer::render_frame() {
         } else if (body.id == 1 || body.id == 2) {
             scale = 1.5f;
         } else {
-            scale = 1.0f; // default value
+            scale = 1.3f; // default value
         }
                 
         model = glm::translate(model, body.position);
@@ -239,7 +239,7 @@ void Renderer::render_frame() {
         }
         else if (body.id == 2) {
             color = glm::vec3(0.8f, 0.8f, 0.8f);
-        }
+        } else color = glm::vec3(1.0f, 0.1f, 1.0f);
         ourShader.setVec3("color", color);
 
         ourShader.setMat4("model", model);
