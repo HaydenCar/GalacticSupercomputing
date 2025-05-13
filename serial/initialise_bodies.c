@@ -13,11 +13,11 @@ void initialise_bodies(BODY *bodies)
 
     bodies[0].x = 0.0;
     bodies[0].y = 0.0;
-    bodies[0].z = 0.0;
+    bodies[0].z = 1.0e7;
 
     bodies[1].x = e_distance;
     bodies[1].y = 0.0;
-    bodies[1].z = 0.0;
+    bodies[1].z = 1000.0;
 
     bodies[2].x = e_distance + m_distance;
     bodies[2].y = 0.0;
@@ -40,7 +40,7 @@ void initialise_bodies(BODY *bodies)
 
     bodies[2].vx = 0.0;
     bodies[2].vy = v_sun + v_moon;
-    bodies[2].vz = 1.0e3;
+    bodies[2].vz = 0.0;
 
     // END PRE-SET VALUES
 

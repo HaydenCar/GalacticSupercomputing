@@ -83,9 +83,9 @@ extern int timestep; // The current step
 /////////////////////////
 // CONST VALUES
 /////////////////////////
-#define MAX_STEP 2000000     // Max amount of steps in the simulation
-#define PRINT_INTERVAL 50000 // The data is only stored in intervals due to storage and ram
-#define DELTA_TIME 0.2       // Delta time is important as the smaller the more accurate but takes way longer to run
+#define MAX_STEP 2500000     // Max amount of steps in the simulation
+#define PRINT_INTERVAL 20000 // The data is only stored in intervals due to storage and ram
+#define DELTA_TIME 15.0      // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
 
 /////////////////////////
