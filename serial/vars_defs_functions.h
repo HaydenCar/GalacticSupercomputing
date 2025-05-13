@@ -6,7 +6,7 @@
 /////////////////////////
 // MACRO DEFINITIONS
 /////////////////////////
-#define num_bodies 3
+#define num_bodies 6
 #define WorldMinX -2e11
 #define WorldMaxX 2e11
 #define WorldMinY -2e11
@@ -83,7 +83,7 @@ extern int timestep; // The current step
 /////////////////////////
 // CONST VALUES
 /////////////////////////
-#define MAX_STEP 2500000     // Max amount of steps in the simulation
+#define MAX_STEP 250000     // Max amount of steps in the simulation
 #define PRINT_INTERVAL 20000 // The data is only stored in intervals due to storage and ram
 #define DELTA_TIME 15.0      // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11

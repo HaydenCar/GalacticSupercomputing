@@ -47,20 +47,56 @@ void initialise_bodies(BODY *bodies)
     // RANDOM BODIES CODE
 
     // Set position (x, y) with random values
-    // bodies[i].x = rand() % 1000;
-    // bodies[i].y = rand() % 1000;
-    // bodies[i].z = rand() % 1000;
-    // // Generate velocity (vx, vy)
-    // bodies[i].vx = ((float)(rand() % 200) - 100) / 10.0; // vx between -10.0 and +10.0
-    // bodies[i].vy = ((float)(rand() % 200) - 100) / 10.0; // vy between -10.0 and +10.0
-    // bodies[i].vz = ((float)(rand() % 200) - 100) / 10.0; // vy between -10.0 and +10.0
 
-    // // Set mass
-    // bodies[i].mass = rand() % 1000 + 10;
+    double min_distance = 1.0e7; // minimum distance between any two bodies 
+    double max_distance_from_sun = 1.496e11; // Earth's orbit
+    int max_attempts = 100;
 
-    // bodies[i].total_force = 0;
+    for (int i = 3; i < num_bodies; i++) {
+        int attempt = 0;
+        int valid = 0;
+        while (!valid && attempt < max_attempts) {
+            // Generate random position between Sun and Earth
+            double x = ((double)rand() / RAND_MAX) * max_distance_from_sun;
+            double y = ((double)rand() / RAND_MAX) * max_distance_from_sun;
+            double z = ((double)rand() / RAND_MAX) * max_distance_from_sun;
 
-    // END RANDOM BODIES CODE
+            // Check for distance from all existing bodies so they arent too close together
+            valid = 1;
+            for (int j = 0; j < i; j++) {
+                double dx = x - bodies[j].x;
+                double dy = y - bodies[j].y;
+                double dz = z - bodies[j].z;
+                double dist = sqrt(dx * dx + dy * dy + dz * dz);
+                if (dist < min_distance) {
+                    valid = 0;
+                    break;
+                }
+            }
 
-    // }
+            if (valid) {
+                bodies[i].x = x;
+                bodies[i].y = y;
+                bodies[i].z = z;
+            }
+            attempt++;
+        }
+
+        if (!valid) {
+            printf("Failed to place body %d without overlapping after %d attempts\n", i, max_attempts);
+            // Fallback: place far away
+            bodies[i].x = bodies[i].y = bodies[i].z = max_distance_from_sun + i * min_distance;
+        }
+
+        // Random velocity in range [-10, +10]
+        bodies[i].vx = ((double)(rand() % 200) - 100) / 10.0;
+        bodies[i].vy = ((double)(rand() % 200) - 100) / 10.0;
+        bodies[i].vz = ((double)(rand() % 200) - 100) / 10.0;
+
+        // Mass between 1e20 and 1e25 for realism
+        bodies[i].mass = 1e20 + ((double)rand() / RAND_MAX) * (1e25 - 1e20);
+
+        bodies[i].total_force = 0;
+    }
+       // END RANDOM BODIES CODE
 }
