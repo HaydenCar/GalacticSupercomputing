@@ -6,9 +6,8 @@ This is a year 3 computing group project.
 Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 
 ### Features to be implemented by end of semester:
-- `Barnes Hut algorithm`
+- `Barnes Hut algorithm` DONE
 - `Leapfrog Integration` DONE
-- `Message Passing Interface for Raspberry-Pi parallel computing`
 - `3D Renderer`
 
 ### Requirements to run code:
