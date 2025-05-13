@@ -103,8 +103,7 @@ void Renderer::load_data(const std::string& filename) {
     unsigned int timestep;
     int body_id;
     double x, y, z;
-    float normaliseSun = 1e-8f;    // For the Sun
-    float normalisePlanets = 1e-11f; // For Earth/Moon
+    float normalise = 1e-10f;
 
     bodies.clear();
     currentTimestep = 0;
@@ -112,7 +111,6 @@ void Renderer::load_data(const std::string& filename) {
 
     // Figured this out from here read this!!!: https://stackoverflow.com/questions/43956124/c-while-loop-to-read-from-input-file
     while (file >> timestep >> body_id >> x >> y >> z) {
-        float normalise = (body_id == 0) ? normaliseSun : normalisePlanets;
         bodies.push_back({body_id, glm::vec3(x * normalise, y * normalise, z * normalise)});
     }
     std::cout << "Loaded " << bodies.size() << " bodies" << std::endl;
@@ -149,6 +147,7 @@ void Renderer::create_render_data() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     // Load in a texture not in use atm
+    /*
     int width, height, nrChannels;
     unsigned char *data = stbi_load("/Engine/Res/wall.jpg", &width, &height, &nrChannels, 0);
     if (data) {
@@ -158,6 +157,7 @@ void Renderer::create_render_data() {
         std::cout << "Failed to load texture" << std::endl;
     }
     stbi_image_free(data);
+    */
 }
 
 // Used to render a frame
@@ -175,16 +175,14 @@ void Renderer::render_frame() {
     glBindVertexArray(VAO);
     
     // Camera setup
-    float cameraDistance = 300.0f;
+    float cameraDistance = 30.0f;
     float cameraX = 0.0f;
     float cameraZ = cameraDistance;
 
     // Look at the center of your data
-    glm::vec3 centerPoint(0.0f, 0.0f, bodies[0].position.z); // Use first body's z position
-
     glm::mat4 view = glm::lookAt(
         glm::vec3(cameraX, cameraDistance * 0.5f, cameraZ),
-        centerPoint,
+        glm::vec3(0.0f, 0.0f, 0.0f),
         glm::vec3(0.0f, 1.0f, 0.0f)
     );
 
@@ -222,16 +220,11 @@ void Renderer::render_frame() {
             
         float scale;
         if (body.id == 0) {
-            scale = 3.0f;  // Sun
-        } else if (body.id == 1) {
-            scale = 1.0f;  // Earth
-            body.position *= 0.1f;  // Additional scaling for Earth
-        } else if (body.id == 2) {
-            scale = 0.5f;  // Moon
-            body.position *= 0.1f;  // Additional scaling for Moon
+            scale = 3.0f;
+        } else if (body.id == 1 || body.id == 2) {
+            scale = 1.5f;
         } else {
-            scale = 1.0f;
-            body.position *= 0.1f;
+            scale = 1.0f; // default value
         }
                 
         model = glm::translate(model, body.position);
@@ -246,9 +239,6 @@ void Renderer::render_frame() {
         }
         else if (body.id == 2) {
             color = glm::vec3(0.8f, 0.8f, 0.8f);
-        }
-        else{
-            color = glm::vec3(1.0f, 1.0f, 1.0f);
         }
         ourShader.setVec3("color", color);
 
