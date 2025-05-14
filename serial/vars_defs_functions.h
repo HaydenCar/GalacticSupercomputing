@@ -6,7 +6,7 @@
 /////////////////////////
 // MACRO DEFINITIONS
 /////////////////////////
-#define num_bodies 6
+#define num_bodies 3
 #define WorldMinX -2e11
 #define WorldMaxX 2e11
 #define WorldMinY -2e11

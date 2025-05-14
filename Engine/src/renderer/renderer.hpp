@@ -12,18 +12,20 @@
 #include <string>
 
 // Renderer class so easy to reuse
-class Renderer {
+class Renderer
+{
 public:
     Renderer();
     ~Renderer();
 
     void create_render_data();
     void render_frame();
-    void load_data(const std::string& filename);
+    void load_data(const std::string &filename);
+
 private:
     unsigned int VBO, VAO, EBO;
     int currentTimestep = 0;
-    int bodiesPerFrame = 6;
+    int bodiesPerFrame = 3;
     float frameTimeStep = 0.1f;
     float lastFrameTime = 0.0f;
 };
