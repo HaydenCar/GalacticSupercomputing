@@ -1,7 +1,7 @@
 #include "vars_defs_functions.h"
 #include "timer.h"
 
-int timestep = 0;
+int timestep = 15;
 OCTREE octree;
 
 int main()

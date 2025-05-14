@@ -32,70 +32,73 @@ std::vector<Body> bodies;
 // Cubes
 float vertices[] = {
     // Back face
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-    
+    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+    0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+    0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+    0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+    -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+
     // Front face
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    
+    -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+    0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+    -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+    -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+
     // Left face
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    
+    -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+    -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+    -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+    -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+
     // Right face
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    
+    0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+    0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+    0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+    0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+    0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+
     // Bottom face
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    
+    -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+    0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+    0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+    0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+    -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+
     // Top face
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-};
+    -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+    0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+    0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+    -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
+    -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
 
 // Constructor
-Renderer::Renderer() {
+Renderer::Renderer()
+{
     VBO = 0;
     VAO = 0;
 }
 
 // Destructor
-Renderer::~Renderer() {
+Renderer::~Renderer()
+{
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
 }
 
 // Loads the data from output.dat
-void Renderer::load_data(const std::string& filename) {
+void Renderer::load_data(const std::string &filename)
+{
     std::ifstream file(filename);
-    if (!file) {
+    if (!file)
+    {
         std::cerr << "Can't open " << filename << std::endl;
         return;
     }
@@ -110,14 +113,16 @@ void Renderer::load_data(const std::string& filename) {
     lastFrameTime = 0.0f;
 
     // Figured this out from here read this!!!: https://stackoverflow.com/questions/43956124/c-while-loop-to-read-from-input-file
-    while (file >> timestep >> body_id >> x >> y >> z) {
+    while (file >> timestep >> body_id >> x >> y >> z)
+    {
         bodies.push_back({body_id, glm::vec3(x * normalise, y * normalise, z * normalise)});
     }
     std::cout << "Loaded " << bodies.size() << " bodies" << std::endl;
 }
 
 // Creates the render data
-void Renderer::create_render_data() {
+void Renderer::create_render_data()
+{
     // Necessary for 3D
     glEnable(GL_DEPTH_TEST);
 
@@ -129,17 +134,17 @@ void Renderer::create_render_data() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // Position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
-    
+
     // Texture coordinate attribute
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     // Load texture
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
-    
+
     // Set texture params
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -161,10 +166,11 @@ void Renderer::create_render_data() {
 }
 
 // Used to render a frame
-void Renderer::render_frame() {
+void Renderer::render_frame()
+{
     static Shader ourShader("src/shaders/shader.vert", "src/shaders/shader.frag");
     static float r = 0.0f, g = 0.0f, b = 0.0f;
-    
+
     // Clear buffers
     glClearColor(r, g, b, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -173,9 +179,9 @@ void Renderer::render_frame() {
     ourShader.use();
     glBindTexture(GL_TEXTURE_2D, texture);
     glBindVertexArray(VAO);
-    
+
     // Camera setup
-    float cameraDistance = 30.0f;
+    float cameraDistance = 100.0f;
     float cameraX = 0.0f;
     float cameraZ = cameraDistance;
 
@@ -183,16 +189,14 @@ void Renderer::render_frame() {
     glm::mat4 view = glm::lookAt(
         glm::vec3(cameraX, cameraDistance * 0.5f, cameraZ),
         glm::vec3(0.0f, 0.0f, 0.0f),
-        glm::vec3(0.0f, 1.0f, 0.0f)
-    );
+        glm::vec3(0.0f, 1.0f, 0.0f));
 
     // Wider perspective view
     glm::mat4 projection = glm::perspective(
         glm::radians(60.0f),
         800.0f / 600.0f,
         1.0f,
-        1000.0f
-    );
+        1000.0f);
 
     // Send matrices to shader
     ourShader.setMat4("view", view);
@@ -200,46 +204,65 @@ void Renderer::render_frame() {
 
     // Next frame when timestep is met
     float currentTime = glfwGetTime();
-    if (currentTime - lastFrameTime > frameTimeStep) {
+    if (currentTime - lastFrameTime > frameTimeStep)
+    {
         currentTimestep += bodiesPerFrame;
         lastFrameTime = currentTime;
-           
+
         // Loop back to start of data if file end
-        if (currentTimestep >= bodies.size()) {
+        if (currentTimestep >= bodies.size())
+        {
             currentTimestep = 0;
         }
     }
-    
+
     // Renders the
     int endIndex;
-    if (currentTimestep + bodiesPerFrame < bodies.size()) {endIndex = currentTimestep + bodiesPerFrame;}
-    else {endIndex = bodies.size();}
-    for (int i = currentTimestep; i < endIndex; i++) {
-        Body& body = bodies[i];
+    if (currentTimestep + bodiesPerFrame < bodies.size())
+    {
+        endIndex = currentTimestep + bodiesPerFrame;
+    }
+    else
+    {
+        endIndex = bodies.size();
+    }
+    for (int i = currentTimestep; i < endIndex; i++)
+    {
+        Body &body = bodies[i];
         glm::mat4 model = glm::mat4(1.0f);
-            
+
         float scale;
-        if (body.id == 0) {
+        if (body.id == 0)
+        {
             scale = 3.0f;
-        } else if (body.id == 1 || body.id == 2) {
+        }
+        else if (body.id == 1 || body.id == 2)
+        {
             scale = 1.5f;
-        } else {
+        }
+        else
+        {
             scale = 1.3f; // default value
         }
-                
+
         model = glm::translate(model, body.position);
         model = glm::scale(model, glm::vec3(scale));
-            
+
         glm::vec3 color;
-        if (body.id == 0) {
+        if (body.id == 0)
+        {
             color = glm::vec3(1.0f, 0.9f, 0.1f);
         }
-        else if (body.id == 1) {
+        else if (body.id == 1)
+        {
             color = glm::vec3(0.2f, 0.5f, 1.0f);
         }
-        else if (body.id == 2) {
+        else if (body.id == 2)
+        {
             color = glm::vec3(0.8f, 0.8f, 0.8f);
-        } else color = glm::vec3(1.0f, 0.1f, 1.0f);
+        }
+        else
+            color = glm::vec3(1.0f, 0.1f, 1.0f);
         ourShader.setVec3("color", color);
 
         ourShader.setMat4("model", model);

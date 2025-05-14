@@ -10,37 +10,42 @@
 #include "glew/glew_init.hpp"
 #include "check_input.hpp"
 
-void Engine::run(){
+void Engine::run()
+{
     init();
-    
+
     main_loop();
-    
+
     cleanup();
 }
 
-void Engine::init(){
+void Engine::init()
+{
     window = window_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Engine");
     glew_init();
     renderer.create_render_data();
 }
 
-void Engine::main_loop(){
-    //renderer.load_data("./Dependencies/output.dat"); //xcode sucks
-    renderer.load_data("/Users/haydencarr/Documents/GalacticSupercomputing/Engine/Dependencies/output.dat");
+void Engine::main_loop()
+{
+    renderer.load_data("./Dependencies/output.dat"); // xcode sucks
+    // renderer.load_data("/Users/haydencarr/Documents/GalacticSupercomputing/Engine/Dependencies/output.dat");
 
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(window))
+    {
         // input
         check_input(window);
-        
-        //render
+
+        // render
         renderer.render_frame();
-        
+
         // swap buffers and poll IO events
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 }
 
-void Engine::cleanup(){
+void Engine::cleanup()
+{
     glfwTerminate();
 }

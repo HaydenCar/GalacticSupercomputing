@@ -65,17 +65,17 @@ extern OCTREE octree;
 /////////////////////////
 // CONST VALUES
 /////////////////////////
-#define MAX_STEP 25000000    // Max amount of steps in the simulation
+#define MAX_STEP 1000000     // Max amount of steps in the simulation
 #define PRINT_INTERVAL 50000 // The data is only stored in intervals due to storage and ram
-#define DELTA_TIME 15.0      // Delta time is important as the smaller the more accurate but takes way longer to run
+#define DELTA_TIME 0.1       // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
-#define NUM_BODIES 3
-#define WORLD_MIN_X -2e11
-#define WORLD_MAX_X 2e11
-#define WORLD_MIN_Y -2e11
-#define WORLD_MAX_Y 2e11
-#define WORLD_MIN_Z -2e11
-#define WORLD_MAX_Z 2e11
+#define NUM_BODIES 20
+#define WORLD_MIN_X -5e11
+#define WORLD_MAX_X 5e11
+#define WORLD_MIN_Y -5e11
+#define WORLD_MAX_Y 5e11
+#define WORLD_MIN_Z -5e11
+#define WORLD_MAX_Z 5e11
 
 /////////////////////////
 // FUNCTIONS
