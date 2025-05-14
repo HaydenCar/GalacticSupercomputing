@@ -2,7 +2,6 @@
 #include "timer.h"
 
 int timestep = 0;
-double G = 6.67430e-11;
 OCTREE octree;
 
 int main()
@@ -11,7 +10,7 @@ int main()
     GET_TIME(start);
 
     // Declare the bodies and allocate the memory
-    BODY *bodies = (BODY *)malloc(num_bodies * sizeof(BODY));
+    BODY *bodies = (BODY *)malloc(NUM_BODIES * sizeof(BODY));
 
     if (bodies == NULL)
     {

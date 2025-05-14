@@ -4,19 +4,6 @@
 #include <stdbool.h>
 
 /////////////////////////
-// MACRO DEFINITIONS
-/////////////////////////
-#define num_bodies 3
-#define WorldMinX -2e11
-#define WorldMaxX 2e11
-#define WorldMinY -2e11
-#define WorldMaxY 2e11
-#define WorldMinZ -2e11
-#define WorldMaxZ 2e11
-
-extern double G;
-
-/////////////////////////
 // BODY STRUCTS
 /////////////////////////
 
@@ -84,9 +71,16 @@ extern int timestep; // The current step
 // CONST VALUES
 /////////////////////////
 #define MAX_STEP 25000000    // Max amount of steps in the simulation
-#define PRINT_INTERVAL 20000 // The data is only stored in intervals due to storage and ram
+#define PRINT_INTERVAL 50000 // The data is only stored in intervals due to storage and ram
 #define DELTA_TIME 15.0      // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
+#define NUM_BODIES 3
+#define WORLD_MIN_X -2e11
+#define WORLD_MAX_X 2e11
+#define WORLD_MIN_Y -2e11
+#define WORLD_MAX_Y 2e11
+#define WORLD_MIN_Z -2e11
+#define WORLD_MAX_Z 2e11
 
 /////////////////////////
 // FUNCTIONS

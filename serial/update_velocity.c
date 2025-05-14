@@ -3,7 +3,7 @@
 void update_velocity(BODY *bodies, double fraction)
 {
     // Loop through all bodies and calculate
-    for (int i = 0; i < num_bodies; i++)
+    for (int i = 0; i < NUM_BODIES; i++)
     {
         // compute the acceleration in x, y and z dir
         double ax = bodies[i].fx / bodies[i].mass; // acceleration in x direction

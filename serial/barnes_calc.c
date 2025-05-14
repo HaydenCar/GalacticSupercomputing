@@ -19,7 +19,7 @@ void barnes_calc(BODY *body, Node *node)
     {
         if (node->Totalmass > 0 && node->body != body)
         {
-            double force = G * body->mass * node->Totalmass / (distance * distance);
+            double force = GRAVITY * body->mass * node->Totalmass / (distance * distance);
             body->fx += force * dx / distance;
             body->fy += force * dy / distance;
             body->fz += force * dz / distance;

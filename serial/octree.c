@@ -1,5 +1,6 @@
 #include "vars_defs_functions.h"
 #include <assert.h>
+
 Node *createNode(AABB bounds, Node *parent)
 {
     Node *node = (Node *)malloc(sizeof(Node));
@@ -103,9 +104,9 @@ Node *FindNext(Node *node, BODY *body)
 void InsertBody(Node *node, BODY *body)
 {
 
-    assert(body->x >= WorldMinX && body->x < WorldMaxX);
-    assert(body->y >= WorldMinY && body->y < WorldMaxY);
-    assert(body->z >= WorldMinZ && body->z < WorldMaxZ);
+    assert(body->x >= WORLD_MIN_X && body->x < WORLD_MAX_X);
+    assert(body->y >= WORLD_MIN_Y && body->y < WORLD_MAX_Y);
+    assert(body->z >= WORLD_MIN_Z && body->z < WORLD_MAX_Z);
 
     if (node->body == NULL && !node->hasChildren) // check if the node is capable of containing a body
     {
@@ -186,6 +187,48 @@ void InsertBody(Node *node, BODY *body)
         }
     }
 }
+
+void create_octree(OCTREE *octree, BODY *bodies)
+{
+    // printf("\nNOW STARTING NEXT TREE\n");
+    AABB worldBounds;
+    worldBounds.maxX = WORLD_MAX_X;
+    worldBounds.minX = WORLD_MIN_X;
+    worldBounds.maxY = WORLD_MAX_Y;
+    worldBounds.minY = WORLD_MIN_Y;
+    worldBounds.maxZ = WORLD_MAX_Z;
+    worldBounds.minZ = WORLD_MIN_Z;
+
+    octree->root = createNode(worldBounds, NULL);
+
+    for (int i = 0; i < NUM_BODIES; i++)
+    {
+        InsertBody(octree->root, &bodies[i]);
+        // test_tree(octree->root, 0);
+    }
+}
+
+void clear_tree(Node *node)
+{
+    if (node->hasChildren)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (node->children[i] != NULL)
+            {
+                clear_tree(node->children[i]);
+                node->children[i] = NULL;
+            }
+        }
+    }
+    else if (node == NULL)
+    {
+        return;
+    }
+    node->body = NULL;
+    free(node);
+}
+
 void test_tree(Node *node, int depth)
 {
     if (node == NULL)
@@ -236,45 +279,4 @@ void test_tree(Node *node, int depth)
             }
         }
     }
-}
-
-void create_octree(OCTREE *octree, BODY *bodies)
-{
-    // printf("\nNOW STARTING NEXT TREE\n");
-    AABB worldBounds;
-
-    worldBounds.maxX = WorldMaxX;
-    worldBounds.minX = WorldMinX;
-    worldBounds.maxY = WorldMaxY;
-    worldBounds.minY = WorldMinY;
-    worldBounds.maxZ = WorldMaxZ;
-    worldBounds.minZ = WorldMinZ;
-
-    octree->root = createNode(worldBounds, NULL);
-
-    for (int i = 0; i < num_bodies; i++)
-    {
-        InsertBody(octree->root, &bodies[i]);
-        // test_tree(octree->root, 0);
-    }
-}
-
-void clear_tree(Node *node)
-{
-    if (node == NULL)
-        return;
-
-    if (node->hasChildren)
-    {
-        for (int i = 0; i < 8; i++)
-        {
-            if (node->children[i] != NULL)
-            {
-                clear_tree(node->children[i]);
-                node->children[i] = NULL;
-            }
-        }
-    }
-    node->body = NULL;
-    free(node);
 }

@@ -2,7 +2,7 @@
 
 void update_positions(BODY *bodies)
 {
-    for (int i = 0; i < num_bodies; i++)
+    for (int i = 0; i < NUM_BODIES; i++)
     {
         // Retrieve current position of body n
         double current_position_x = bodies[i].x;

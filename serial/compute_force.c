@@ -3,7 +3,7 @@
 
 void compute_force(OCTREE *octree, BODY *bodies)
 {
-    for (int i = 0; i < num_bodies; i++)
+    for (int i = 0; i < NUM_BODIES; i++)
     {
         bodies[i].fx = 0;
         bodies[i].fy = 0;
