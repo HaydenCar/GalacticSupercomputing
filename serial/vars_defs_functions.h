@@ -6,7 +6,6 @@
 /////////////////////////
 // BODY STRUCTS
 /////////////////////////
-
 typedef struct body
 {
     double x; // x pos
@@ -27,7 +26,6 @@ typedef struct body
 /////////////////////////
 // OCTREE STRUCTS
 /////////////////////////
-
 // AXIS ALLIGNED BOUNDING BOX
 // https://stackoverflow.com/questions/22512319/what-is-aabb-collision-detection
 typedef struct aabb
@@ -39,7 +37,6 @@ typedef struct aabb
     double minY;
     double minZ;
 } AABB;
-
 // OCTREE NODE
 typedef struct Node
 {
@@ -53,19 +50,17 @@ typedef struct Node
 
     // int addressNum; // anywhere from 0-7 instead of a-h (easier to loop through) for now doing quad so 0-3
 } Node;
-
 // THE OCTREE
 typedef struct octree
 {
     Node *root;
 } OCTREE;
 
-extern OCTREE octree;
 /////////////////////////
 // EXTERN VARS
 /////////////////////////
-
 extern int timestep; // The current step
+extern OCTREE octree;
 
 /////////////////////////
 // CONST VALUES
@@ -85,20 +80,17 @@ extern int timestep; // The current step
 /////////////////////////
 // FUNCTIONS
 /////////////////////////
-
 void initialise_bodies(BODY *bodies);
 void update_positions(BODY *bodies);
 void print_world(BODY *bodies, FILE *fp);
-
 void update_velocity(BODY *bodies, double fraction);
 void compute_force(OCTREE *octree, BODY *bodies);
-
 void create_octree(OCTREE *octree, BODY *bodies);
 Node *createNode(AABB bounds, Node *parent);
 void InsertBody(Node *node, BODY *body);
 void divideNode(Node *node);
 Node *FindNext(Node *node, BODY *body);
-void UpdateParent(Node *node);
+void update_parent(Node *node);
 void test_tree(Node *node, int depth);
 void clear_tree(Node *node);
 void barnes_calc(BODY *body, Node *node);

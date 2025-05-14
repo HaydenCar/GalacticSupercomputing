@@ -20,7 +20,7 @@ Node *createNode(AABB bounds, Node *parent)
     return node;
 }
 
-void UpdateParent(Node *node)
+void update_parent(Node *node)
 {
     Node *parentNode = node->parent;
     while (parentNode != NULL)
@@ -118,8 +118,8 @@ void InsertBody(Node *node, BODY *body)
         node->Totalmass = body->mass;
         // only update nodes mass if was successfully added to as an external node
 
-        UpdateParent(node); // resets the centres of mass and sets parent->body to null
-        // parent node updated by UpdateParent()
+        update_parent(node); // resets the centres of mass and sets parent->body to null
+        // parent node updated by update_parent()
     }
     else
     {
@@ -229,6 +229,7 @@ void clear_tree(Node *node)
     free(node);
 }
 
+/*
 void test_tree(Node *node, int depth)
 {
     if (node == NULL)
@@ -280,3 +281,4 @@ void test_tree(Node *node, int depth)
         }
     }
 }
+*/

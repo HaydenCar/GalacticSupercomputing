@@ -4,7 +4,9 @@
 void barnes_calc(BODY *body, Node *node)
 {
     if (node == NULL || (node->body == body && !node->hasChildren))
+    {
         return;
+    }
 
     double dx = node->COMx - body->x;
     double dy = node->COMy - body->y;

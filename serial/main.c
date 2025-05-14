@@ -20,7 +20,6 @@ int main()
 
     // Initialise the bodies with random nums
     initialise_bodies(bodies);
-
     create_octree(&octree, bodies);
     compute_force(&octree, bodies);
 
@@ -37,7 +36,6 @@ int main()
     timestep++;
 
     // World generation loop
-
     for (; timestep <= MAX_STEP; timestep++)
     {
         if (timestep % PRINT_INTERVAL == 0 || timestep == MAX_STEP) // Only print every 100th timestep
@@ -54,9 +52,9 @@ int main()
         compute_force(&octree, bodies);
         update_velocity(bodies, 0.5); // second half step
     }
+
     clear_tree(octree.root);
     octree.root = NULL;
-
     // Close the file, free memory and end program
     fclose(fp);
     free(bodies);
