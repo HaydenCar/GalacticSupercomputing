@@ -55,6 +55,8 @@ int main()
         compute_force(&octree, bodies);
         update_velocity(bodies, 0.5); // second half step
     }
+    clear_tree(octree.root);
+    octree.root = NULL;
 
     // Close the file, free memory and end program
     fclose(fp);

@@ -60,32 +60,33 @@ void divideNode(Node *node)
 
     for (int i = 0; i < 8; i++)
     {
-        node->children[i] = createNode(childBounds[i], node); // Pass the current node as the parent
-    }
-
-    node->hasChildren = true;
-    for (int i = 0; i < 8; i++)
-    {
         node->children[i] = createNode(childBounds[i], node);
         if (node->children[i] == NULL)
         {
             printf("Failed to create child node %d\n", i);
+            exit(1);
         }
     }
+
+    node->hasChildren = true;
 }
 
 Node *FindNext(Node *node, BODY *body)
 {
     bool found = false;
 
-    Node *nextNode;
+    Node *nextNode = NULL;
     for (int i = 0; !found && i < 8; i++)
     {
         Node *current = node->children[i];
+
+        if (current == NULL)
+            continue; // fix seg fault
+
         AABB bounds = current->bounds;
-        if (body->x <= bounds.maxX && body->x >= bounds.minX &&
-            body->y <= bounds.maxY && body->y >= bounds.minY &&
-            body->z <= bounds.maxZ && body->z >= bounds.minZ)
+        if (body->x >= bounds.minX && body->x < bounds.maxX &&
+            body->y >= bounds.minY && body->y < bounds.maxY &&
+            body->z >= bounds.minZ && body->z < bounds.maxZ)
         {
             found = true;
             nextNode = current;
@@ -123,8 +124,21 @@ void InsertBody(Node *node, BODY *body)
             divideNode(node);
 
             nextNode = FindNext(node, node->body);
+
+            if (nextNode == NULL)
+            {
+                fprintf(stderr, "InsertBody error: Failed to find child node for existing body.\n");
+                exit(1);
+            }
+
             InsertBody(nextNode, node->body);
             nextNode = FindNext(node, body);
+
+            if (nextNode == NULL)
+            {
+                fprintf(stderr, "InsertBody error: Failed to find child node for existing body.\n");
+                exit(1);
+            }
             InsertBody(nextNode, body);
 
             // will set parent body to null and set the new body in the new node
@@ -134,7 +148,11 @@ void InsertBody(Node *node, BODY *body)
         {
             // the node has children
             nextNode = FindNext(node, body);
-
+            if (nextNode == NULL)
+            {
+                fprintf(stderr, "InsertBody error: Failed to find child node for existing body.\n");
+                exit(1);
+            }
             InsertBody(nextNode, body);
             // will set parent body to null and set the new body in the new node
         }
