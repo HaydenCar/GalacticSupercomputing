@@ -1,13 +1,14 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -fsanitize=address 
+
 
 # Target executable
 TARGET = main
 
 # Source files
 
-SRCS = main.c initialise_bodies.c update_positions.c print_world.c compute_force.c update_velocity.c octree.c barnesCalc.o
+SRCS = main.c initialise_bodies.c update_positions.c print_world.c compute_force.c update_velocity.c octree.c barnesCalc.c
 
 
 # Object files
