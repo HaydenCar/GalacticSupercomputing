@@ -9,6 +9,6 @@ void compute_force(OCTREE *octree, BODY *bodies)
         bodies[i].fy = 0;
         bodies[i].fz = 0;
 
-        barnesCalc(&bodies[i], octree->root);
+        barnes_calc(&bodies[i], octree->root);
     }
 }

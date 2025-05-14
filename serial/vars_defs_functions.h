@@ -107,4 +107,4 @@ Node *FindNext(Node *node, BODY *body);
 void UpdateParent(Node *node);
 void test_tree(Node *node, int depth);
 void clear_tree(Node *node);
-void barnesCalc(BODY *body, Node *node);
+void barnes_calc(BODY *body, Node *node);

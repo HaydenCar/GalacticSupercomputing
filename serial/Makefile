@@ -8,7 +8,7 @@ TARGET = main
 
 # Source files
 
-SRCS = main.c initialise_bodies.c update_positions.c print_world.c compute_force.c update_velocity.c octree.c barnesCalc.c
+SRCS = main.c initialise_bodies.c update_positions.c print_world.c compute_force.c update_velocity.c octree.c barnes_calc.c
 
 
 # Object files

@@ -1,7 +1,7 @@
 #include "vars_defs_functions.h"
 #include "math.h"
 
-void barnesCalc(BODY *body, Node *node)
+void barnes_calc(BODY *body, Node *node)
 {
     if (node == NULL || (node->body == body && !node->hasChildren))
         return;
@@ -31,7 +31,7 @@ void barnesCalc(BODY *body, Node *node)
         for (int i = 0; i < 8; i++)
         {
             if (node->children[i] != NULL)
-                barnesCalc(body, node->children[i]);
+                barnes_calc(body, node->children[i]);
         }
     }
 }
