@@ -1,5 +1,5 @@
 #include "vars_defs_functions.h"
-
+#include <assert.h>
 Node *createNode(AABB bounds, Node *parent)
 {
     Node *node = (Node *)malloc(sizeof(Node));
@@ -102,6 +102,11 @@ Node *FindNext(Node *node, BODY *body)
 
 void InsertBody(Node *node, BODY *body)
 {
+
+    assert(body->x >= WorldMinX && body->x < WorldMaxX);
+    assert(body->y >= WorldMinY && body->y < WorldMaxY);
+    assert(body->z >= WorldMinZ && body->z < WorldMaxZ);
+
     if (node->body == NULL && !node->hasChildren) // check if the node is capable of containing a body
     {
         node->body = body;
@@ -127,7 +132,14 @@ void InsertBody(Node *node, BODY *body)
 
             if (nextNode == NULL)
             {
-                fprintf(stderr, "InsertBody error: Failed to find child node for existing body.\n");
+                fprintf(stderr,
+                        "InsertBody error: Failed to find child node for body at (%.2f, %.2f, %.2f)\n",
+                        body->x, body->y, body->z);
+                fprintf(stderr,
+                        "Parent bounds: X[%.2f, %.2f], Y[%.2f, %.2f], Z[%.2f, %.2f]\n",
+                        node->bounds.minX, node->bounds.maxX,
+                        node->bounds.minY, node->bounds.maxY,
+                        node->bounds.minZ, node->bounds.maxZ);
                 exit(1);
             }
 
@@ -136,9 +148,17 @@ void InsertBody(Node *node, BODY *body)
 
             if (nextNode == NULL)
             {
-                fprintf(stderr, "InsertBody error: Failed to find child node for existing body.\n");
+                fprintf(stderr,
+                        "InsertBody error: Failed to find child node for body at (%.2f, %.2f, %.2f)\n",
+                        body->x, body->y, body->z);
+                fprintf(stderr,
+                        "Parent bounds: X[%.2f, %.2f], Y[%.2f, %.2f], Z[%.2f, %.2f]\n",
+                        node->bounds.minX, node->bounds.maxX,
+                        node->bounds.minY, node->bounds.maxY,
+                        node->bounds.minZ, node->bounds.maxZ);
                 exit(1);
             }
+
             InsertBody(nextNode, body);
 
             // will set parent body to null and set the new body in the new node
@@ -150,9 +170,17 @@ void InsertBody(Node *node, BODY *body)
             nextNode = FindNext(node, body);
             if (nextNode == NULL)
             {
-                fprintf(stderr, "InsertBody error: Failed to find child node for existing body.\n");
+                fprintf(stderr,
+                        "InsertBody error: Failed to find child node for body at (%.2f, %.2f, %.2f)\n",
+                        body->x, body->y, body->z);
+                fprintf(stderr,
+                        "Parent bounds: X[%.2f, %.2f], Y[%.2f, %.2f], Z[%.2f, %.2f]\n",
+                        node->bounds.minX, node->bounds.maxX,
+                        node->bounds.minY, node->bounds.maxY,
+                        node->bounds.minZ, node->bounds.maxZ);
                 exit(1);
             }
+
             InsertBody(nextNode, body);
             // will set parent body to null and set the new body in the new node
         }
