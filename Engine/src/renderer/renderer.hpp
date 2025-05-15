@@ -21,13 +21,16 @@ public:
     void create_render_data();
     void render_frame();
     void load_data(const std::string &filename);
-
+    void zoom_in();
+    void zoom_out();
 private:
     unsigned int VBO, VAO, EBO;
     int currentTimestep = 0;
-    int bodiesPerFrame = 100;
+    int bodiesPerFrame = 80;
     float frameTimeStep = 0.1f;
     float lastFrameTime = 0.0f;
+    float cameraDistance;
+    float zoom_distance = 1.0f;
 };
 
 #endif /* renderer_hpp */

@@ -84,6 +84,7 @@ Renderer::Renderer()
 {
     VBO = 0;
     VAO = 0;
+    cameraDistance = 100.0f;
 }
 
 // Destructor
@@ -118,6 +119,16 @@ void Renderer::load_data(const std::string &filename)
         bodies.push_back({body_id, glm::vec3(x * normalise, y * normalise, z * normalise)});
     }
     std::cout << "Loaded " << bodies.size() << " bodies" << std::endl;
+}
+
+void Renderer::zoom_out()
+{
+    cameraDistance = cameraDistance - zoom_distance;
+}
+
+void Renderer::zoom_in()
+{
+    cameraDistance = cameraDistance + zoom_distance;
 }
 
 // Creates the render data
@@ -181,7 +192,6 @@ void Renderer::render_frame()
     glBindVertexArray(VAO);
 
     // Camera setup
-    float cameraDistance = 150.0f;
     float cameraX = 0.0f;
     float cameraZ = cameraDistance;
 
@@ -232,43 +242,101 @@ void Renderer::render_frame()
         glm::mat4 model = glm::mat4(1.0f);
 
         float scale;
-        if (body.id == 0)
+        if (body.id == 0) // Sun
         {
-            scale = 3.0f;
+            scale = 5.0f; // Made significantly larger to maintain dominance
         }
-        else if (body.id == 1 || body.id == 2)
+        else if (body.id == 1) // Earth
         {
-            scale = 1.5f;
+            scale = 1.5f; // A base medium-sized planet
         }
-        else
+        else if (body.id == 2) // Mercury
         {
-            scale = 1.3f; // default value
+            scale = 1.2f; // Smallest, but still visible
+        }
+        else if (body.id == 3) // Venus
+        {
+            scale = 1.48f; // Slightly smaller than Earth
+        }
+        else if (body.id == 4) // Mars
+        {
+            scale = 1.3f; // Smaller than Earth/Venus
+        }
+        else if (body.id == 5) // Jupiter
+        {
+            scale = 3.0f; // Largest planet, visually commanding
+        }
+        else if (body.id == 6) // Saturn
+        {
+            scale = 2.5f; // Second largest
+        }
+        else if (body.id == 7) // Uranus
+        {
+            scale = 2.0f; // Ice giant
+        }
+        else if (body.id == 8) // Neptune
+        {
+            scale = 1.9f; // Ice giant, slightly smaller than Uranus
+        }
+        else if (body.id == 9) // Pluto
+        {
+            scale = 1.1f; // Dwarf planet, smallest but clearly visible
+        }
+        else // Default for any other bodies (e.g., random ones)
+        {
+            scale = 1.0f; // Default value for other objects
         }
 
         model = glm::translate(model, body.position);
         model = glm::scale(model, glm::vec3(scale));
 
         glm::vec3 color;
-        if (body.id == 0)
+        if (body.id == 0) // Sun
         {
-            color = glm::vec3(1.0f, 0.9f, 0.1f);
+            color = glm::vec3(1.0f, 0.9f, 0.1f); 
         }
-        else if (body.id == 1)
+        else if (body.id == 1) // Earth
         {
             color = glm::vec3(0.2f, 0.5f, 1.0f);
         }
-        else if (body.id == 2)
+        else if (body.id == 2) // Mercury
         {
-            color = glm::vec3(0.8f, 0.8f, 0.8f);
+            color = glm::vec3(0.6f, 0.6f, 0.6f);
         }
-        else
-            color = glm::vec3(
-                glm::mod(static_cast<float>(bodies[i].id) * 0.423482348238f, 1.0f),
-                glm::mod(static_cast<float>(bodies[i].id) * 0.23224424f, 1.0f),
-                glm::mod(static_cast<float>(bodies[i].id) * 0.88978668f, 1.0f)
-            );
+        else if (body.id == 3) // Venus
+        {
+            color = glm::vec3(1.0f, 0.6f, 0.2f);
+        }
+        else if (body.id == 4) // Mars
+        {
+            color = glm::vec3(0.8f, 0.3f, 0.1f);
+        }
+        else if (body.id == 5) // Jupiter
+        {
+            color = glm::vec3(0.9f, 0.7f, 0.5f);
+        }
+        else if (body.id == 6) // Saturn
+        {
+            color = glm::vec3(0.9f, 0.8f, 0.4f);
+        }
+        else if (body.id == 7) // Uranus
+        {
+            color = glm::vec3(0.4f, 0.8f, 0.9f);
+        }
+        else if (body.id == 8) // Neptune
+        {
+            color = glm::vec3(0.1f, 0.3f, 0.8f);
+        }
+        else if (body.id == 9) // Pluto
+        {
+            color = glm::vec3(0.7f, 0.5f, 0.4f);
+        }
+        else // Stars
+        {
+            color = glm::vec3(1.0f, 1.0f, 1.0f); // White
+        }
+        
         ourShader.setVec3("color", color);
-
         ourShader.setMat4("model", model);
         glDrawArrays(GL_TRIANGLES, 0, 36);
     }

@@ -34,7 +34,7 @@ void Engine::main_loop()
     while (!glfwWindowShouldClose(window))
     {
         // input
-        check_input(window);
+        check_input(window, renderer);
 
         // render
         renderer.render_frame();
