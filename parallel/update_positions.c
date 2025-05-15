@@ -2,7 +2,7 @@
 #include <omp.h>
 void update_positions(BODY *bodies)
 {
-#pragma omp parallel for
+#pragma omp parallel for num_threads(8)
     for (int i = 0; i < NUM_BODIES; i++)
     {
         // Retrieve current position of body n

@@ -1,5 +1,8 @@
 # Compiler and flags
-CC = gcc
+CC = g++-14
+#CC = gcc for bella
+#CC = g++-14 for hayden
+
 CFLAGS = -Wall -g  -fopenmp
 #for debugging add  -fsanitize=address
 
@@ -7,9 +10,7 @@ CFLAGS = -Wall -g  -fopenmp
 TARGET = main
 
 # Source files
-
 SRCS = main.c initialise_bodies.c update_positions.c print_world.c compute_force.c update_velocity.c octree.c barnes_calc.c
-
 
 # Object files
 OBJS = $(SRCS:.c=.o)

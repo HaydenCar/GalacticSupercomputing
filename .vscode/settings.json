@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "assert.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "vars_defs_functions.h": "c"
     }
 }
