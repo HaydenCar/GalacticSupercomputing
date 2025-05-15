@@ -1,6 +1,6 @@
 # Compiler and flags
-CC = g++-14
-#CC = gcc for bella
+# CC = g++-14
+CC = gcc #for bella
 #CC = g++-14 for hayden
 
 CFLAGS = -Wall -g  -fopenmp

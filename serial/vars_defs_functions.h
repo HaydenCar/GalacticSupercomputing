@@ -62,6 +62,8 @@ typedef struct octree
 extern int timestep; // The current step
 extern OCTREE octree;
 
+extern double HighestX, HighestY, HighestZ, LowestX, LowestY, LowestZ;
+
 /////////////////////////
 // CONST VALUES
 /////////////////////////
