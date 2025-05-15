@@ -244,47 +244,47 @@ void Renderer::render_frame()
         float scale;
         if (body.id == 0) // Sun
         {
-            scale = 5.0f; // Made significantly larger to maintain dominance
+            scale = 5.0f; 
         }
         else if (body.id == 1) // Earth
         {
-            scale = 1.5f; // A base medium-sized planet
+            scale = 1.5f; 
         }
         else if (body.id == 2) // Mercury
         {
-            scale = 1.2f; // Smallest, but still visible
+            scale = 1.2f; 
         }
         else if (body.id == 3) // Venus
         {
-            scale = 1.48f; // Slightly smaller than Earth
+            scale = 1.48f; 
         }
         else if (body.id == 4) // Mars
         {
-            scale = 1.3f; // Smaller than Earth/Venus
+            scale = 1.3f; 
         }
         else if (body.id == 5) // Jupiter
         {
-            scale = 3.0f; // Largest planet, visually commanding
+            scale = 3.0f; 
         }
         else if (body.id == 6) // Saturn
         {
-            scale = 2.5f; // Second largest
+            scale = 2.5f; 
         }
         else if (body.id == 7) // Uranus
         {
-            scale = 2.0f; // Ice giant
+            scale = 2.0f;
         }
         else if (body.id == 8) // Neptune
         {
-            scale = 1.9f; // Ice giant, slightly smaller than Uranus
+            scale = 1.9f; 
         }
         else if (body.id == 9) // Pluto
         {
-            scale = 1.1f; // Dwarf planet, smallest but clearly visible
+            scale = 1.1f; 
         }
-        else // Default for any other bodies (e.g., random ones)
+        else // Default 
         {
-            scale = 1.0f; // Default value for other objects
+            scale = 1.0f; 
         }
 
         model = glm::translate(model, body.position);
