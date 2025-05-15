@@ -262,7 +262,11 @@ void Renderer::render_frame()
             color = glm::vec3(0.8f, 0.8f, 0.8f);
         }
         else
-            color = glm::vec3(1.0f, 0.1f, 1.0f);
+            color = glm::vec3(
+                glm::mod(static_cast<float>(bodies[i].id) * 0.423482348238f, 1.0f),
+                glm::mod(static_cast<float>(bodies[i].id) * 0.23224424f, 1.0f),
+                glm::mod(static_cast<float>(bodies[i].id) * 0.88978668f, 1.0f)
+            );
         ourShader.setVec3("color", color);
 
         ourShader.setMat4("model", model);

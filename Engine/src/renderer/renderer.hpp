@@ -25,7 +25,7 @@ public:
 private:
     unsigned int VBO, VAO, EBO;
     int currentTimestep = 0;
-    int bodiesPerFrame = 1000;
+    int bodiesPerFrame = 800;
     float frameTimeStep = 0.1f;
     float lastFrameTime = 0.0f;
 };

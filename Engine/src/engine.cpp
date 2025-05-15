@@ -28,8 +28,8 @@ void Engine::init()
 
 void Engine::main_loop()
 {
-    renderer.load_data("./Dependencies/output.dat"); // xcode sucks
-    // renderer.load_data("/Users/haydencarr/Documents/GalacticSupercomputing/Engine/Dependencies/output.dat");
+    //renderer.load_data("./Dependencies/output.dat"); // xcode sucks
+    renderer.load_data("/Users/haydencarr/Documents/GalacticSupercomputing/Engine/Dependencies/output.dat");
 
     while (!glfwWindowShouldClose(window))
     {
