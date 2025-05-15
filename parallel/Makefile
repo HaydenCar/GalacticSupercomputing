@@ -1,7 +1,7 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -g -fsanitize=address -fopenmp
-
+CFLAGS = -Wall -g  -fopenmp
+#for debugging add  -fsanitize=address
 
 # Target executable
 TARGET = main

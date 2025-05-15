@@ -44,12 +44,26 @@ int main()
             print_world(bodies, fp);
         }
 
+        // double startOCTREE, endOCTREE, elapsedOCTREE;
+
         // Update forces, velocities, and positions
         update_velocity(bodies, 0.5); // half step
         update_positions(bodies);     // full step
-        clear_tree(octree.root);
-        octree.root = NULL;
-        create_octree(&octree, bodies);
+
+        if (timestep % 20 == 0)
+        {
+
+            clear_tree(octree.root);
+            octree.root = NULL;
+
+            // GET_TIME(startOCTREE);
+            create_octree(&octree, bodies);
+            // GET_TIME(endOCTREE);
+
+            // elapsedOCTREE = endOCTREE - startOCTREE;
+            // printf("The octree to be timed took %lf seconds\n", elapsedOCTREE);
+        }
+
         compute_force(&octree, bodies);
         update_velocity(bodies, 0.5); // second half step
     }
