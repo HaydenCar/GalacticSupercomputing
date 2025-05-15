@@ -1,7 +1,8 @@
 #include "vars_defs_functions.h"
-
+#include <omp.h>
 void update_positions(BODY *bodies)
 {
+#pragma omp parallel for
     for (int i = 0; i < NUM_BODIES; i++)
     {
         // Retrieve current position of body n

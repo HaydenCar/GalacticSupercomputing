@@ -1,7 +1,9 @@
 #include "vars_defs_functions.h"
-
+#include <omp.h>
 void update_velocity(BODY *bodies, double fraction)
 {
+
+#pragma omp parallel for
     // Loop through all bodies and calculate
     for (int i = 0; i < NUM_BODIES; i++)
     {

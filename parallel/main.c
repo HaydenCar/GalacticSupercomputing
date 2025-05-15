@@ -61,6 +61,6 @@ int main()
     free(bodies);
     GET_TIME(finish);
     elapsed = finish - start;
-    printf("The code to be timed took %e seconds\n", elapsed);
+    printf("The code to be timed took %lf seconds\n", elapsed);
     return 0;
 }
