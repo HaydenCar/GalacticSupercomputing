@@ -58,7 +58,6 @@ void initialise_bodies(BODY *bodies)
         int valid = 0;
         while (!valid && attempt < max_attempts)
         {
-            // Generate random position between Sun and Earth
             double x = WORLD_MIN_X + ((double)rand() / RAND_MAX) * (WORLD_MAX_X - WORLD_MIN_X);
             double y = WORLD_MIN_Y + ((double)rand() / RAND_MAX) * (WORLD_MAX_Y - WORLD_MIN_Y);
             double z = WORLD_MIN_Z + ((double)rand() / RAND_MAX) * (WORLD_MAX_Z - WORLD_MIN_Z);
@@ -94,13 +93,11 @@ void initialise_bodies(BODY *bodies)
             bodies[i].x = bodies[i].y = bodies[i].z = max_distance_from_sun + i * min_distance;
         }
 
-        // Random velocity in range [-10, +10]
-        bodies[i].vx = ((double)(rand() % 200) - 100) / 10.0;
-        bodies[i].vy = ((double)(rand() % 200) - 100) / 10.0;
-        bodies[i].vz = ((double)(rand() % 200) - 100) / 10.0;
+        bodies[i].vx = ((double)rand() / RAND_MAX - 0.5) * 2.0 * 1.0e4;
+        bodies[i].vy = ((double)rand() / RAND_MAX - 0.5) * 2.0 * 1.0e4;
+        bodies[i].vz = ((double)rand() / RAND_MAX - 0.5) * 2.0 * 1.0e4;
 
-        // Mass between 1e20 and 1e25 for realism
-        bodies[i].mass = 1e20 + ((double)rand() / RAND_MAX) * (1e25 - 1e20);
+        bodies[i].mass = 1e25 + ((double)rand() / RAND_MAX) * 2.0 * (1e25 - 1e20);
 
         bodies[i].total_force = 0;
     }

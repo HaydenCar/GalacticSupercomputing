@@ -104,9 +104,9 @@ Node *FindNext(Node *node, BODY *body)
 void InsertBody(Node *node, BODY *body)
 {
 
-    assert(body->x >= WORLD_MIN_X && body->x < WORLD_MAX_X);
-    assert(body->y >= WORLD_MIN_Y && body->y < WORLD_MAX_Y);
-    assert(body->z >= WORLD_MIN_Z && body->z < WORLD_MAX_Z);
+    // assert(body->x >= WORLD_MIN_X && body->x < WORLD_MAX_X);
+    // assert(body->y >= WORLD_MIN_Y && body->y < WORLD_MAX_Y);
+    // assert(body->z >= WORLD_MIN_Z && body->z < WORLD_MAX_Z);
 
     if (node->body == NULL && !node->hasChildren) // check if the node is capable of containing a body
     {
@@ -192,12 +192,40 @@ void create_octree(OCTREE *octree, BODY *bodies)
 {
     // printf("\nNOW STARTING NEXT TREE\n");
     AABB worldBounds;
-    worldBounds.maxX = WORLD_MAX_X;
-    worldBounds.minX = WORLD_MIN_X;
-    worldBounds.maxY = WORLD_MAX_Y;
-    worldBounds.minY = WORLD_MIN_Y;
-    worldBounds.maxZ = WORLD_MAX_Z;
-    worldBounds.minZ = WORLD_MIN_Z;
+
+    double margin = 1e9;
+
+    // fmax returns the larger one of 2 numbers fmin is opposite
+    double minX = fmin(WORLD_MIN_X, LowestX - margin);
+    double maxX = fmax(WORLD_MAX_X, HighestX + margin);
+
+    double minY = fmin(WORLD_MIN_Y, LowestY - margin);
+    double maxY = fmax(WORLD_MAX_Y, HighestY + margin);
+
+    double minZ = fmin(WORLD_MIN_Z, LowestZ - margin);
+    double maxZ = fmax(WORLD_MAX_Z, HighestZ + margin);
+
+    // gotta keep it a cube!
+
+    double x_extent = maxX - minX;
+    double y_extent = maxY - minY;
+    double z_extent = maxZ - minZ;
+
+    double max_extent = fmax(x_extent, fmax(y_extent, z_extent));
+
+    double centerX = (minX + maxX) / 2.0;
+    double centerY = (minY + maxY) / 2.0;
+    double centerZ = (minZ + maxZ) / 2.0;
+    // max extent is equal to the full length of the cube, so thats why we divide by 2, since we need min and max
+
+    worldBounds.minX = centerX - max_extent / 2.0;
+    worldBounds.maxX = centerX + max_extent / 2.0;
+
+    worldBounds.minY = centerY - max_extent / 2.0;
+    worldBounds.maxY = centerY + max_extent / 2.0;
+
+    worldBounds.minZ = centerZ - max_extent / 2.0;
+    worldBounds.maxZ = centerZ + max_extent / 2.0;
 
     octree->root = createNode(worldBounds, NULL);
 

@@ -4,6 +4,9 @@
 int timestep = 0;
 OCTREE octree;
 
+double HighestX = 0, HighestY = 0, HighestZ = 0;
+double LowestX = 0, LowestY = 0, LowestZ = 0;
+
 int main()
 {
     double start, finish, elapsed;

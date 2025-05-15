@@ -181,7 +181,7 @@ void Renderer::render_frame()
     glBindVertexArray(VAO);
 
     // Camera setup
-    float cameraDistance = 100.0f;
+    float cameraDistance = 150.0f;
     float cameraX = 0.0f;
     float cameraZ = cameraDistance;
 
