@@ -76,6 +76,7 @@ extern double HighestX, HighestY, HighestZ, LowestX, LowestY, LowestZ;
 #define WORLD_MAX_Y 2e12
 #define WORLD_MIN_Z -2e12
 #define WORLD_MAX_Z 2e12
+#define MAX_THREADS 8
 
 /////////////////////////
 // FUNCTIONS

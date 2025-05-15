@@ -2,7 +2,7 @@
 #include <omp.h>
 void update_velocity(BODY *bodies, double fraction)
 {
-#pragma omp parallel for num_threads(8)
+#pragma omp parallel for num_threads(MAX_THREADS)
     // Loop through all bodies and calculate
     for (int i = 0; i < NUM_BODIES; i++)
     {
