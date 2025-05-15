@@ -22,7 +22,6 @@ typedef struct body
     double acceleration;
     // char address[];
 } BODY;
-
 /////////////////////////
 // OCTREE STRUCTS
 /////////////////////////
@@ -55,7 +54,6 @@ typedef struct octree
 {
     Node *root;
 } OCTREE;
-
 /////////////////////////
 // EXTERN VARS
 /////////////////////////
@@ -77,7 +75,6 @@ extern double HighestX, HighestY, HighestZ, LowestX, LowestY, LowestZ;
 #define WORLD_MIN_Z -2e12
 #define WORLD_MAX_Z 2e12
 #define MAX_THREADS 4
-
 /////////////////////////
 // FUNCTIONS
 /////////////////////////

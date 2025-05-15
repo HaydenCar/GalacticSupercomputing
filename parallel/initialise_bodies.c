@@ -1,6 +1,7 @@
 #include "vars_defs_functions.h"
 #include "math.h"
 #include "time.h"
+
 void initialise_bodies(BODY *bodies)
 {
     srand(time(NULL));

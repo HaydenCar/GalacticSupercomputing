@@ -1,5 +1,6 @@
 #include "vars_defs_functions.h"
 #include <omp.h>
+
 void update_velocity(BODY *bodies, double fraction)
 {
 #pragma omp parallel for num_threads(MAX_THREADS)

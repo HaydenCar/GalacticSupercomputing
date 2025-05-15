@@ -26,9 +26,10 @@ void update_parent(Node *node)
     while (parentNode != NULL)
     {
         parentNode->Totalmass += node->Totalmass;
-        parentNode->COMx = (parentNode->COMx * (parentNode->Totalmass - node->Totalmass) + node->COMx * node->Totalmass) / parentNode->Totalmass;
-        parentNode->COMy = (parentNode->COMy * (parentNode->Totalmass - node->Totalmass) + node->COMy * node->Totalmass) / parentNode->Totalmass;
-        parentNode->COMz = (parentNode->COMz * (parentNode->Totalmass - node->Totalmass) + node->COMz * node->Totalmass) / parentNode->Totalmass;
+        double difference = parentNode->Totalmass - node->Totalmass;
+        parentNode->COMx = (parentNode->COMx * (difference) + node->COMx * node->Totalmass) / parentNode->Totalmass;
+        parentNode->COMy = (parentNode->COMy * (difference) + node->COMy * node->Totalmass) / parentNode->Totalmass;
+        parentNode->COMz = (parentNode->COMz * (difference) + node->COMz * node->Totalmass) / parentNode->Totalmass;
         parentNode->body = NULL;
         node = parentNode;
         parentNode = node->parent;
@@ -75,8 +76,8 @@ void divideNode(Node *node)
 Node *FindNext(Node *node, BODY *body)
 {
     bool found = false;
-
     Node *nextNode = NULL;
+
     for (int i = 0; !found && i < 8; i++)
     {
         Node *current = node->children[i];
@@ -216,16 +217,17 @@ void create_octree(OCTREE *octree, BODY *bodies)
     double centerX = (minX + maxX) / 2.0;
     double centerY = (minY + maxY) / 2.0;
     double centerZ = (minZ + maxZ) / 2.0;
+
     // max extent is equal to the full length of the cube, so thats why we divide by 2, since we need min and max
+    max_extent = max_extent / 2.0;
+    worldBounds.minX = centerX - max_extent;
+    worldBounds.maxX = centerX + max_extent;
 
-    worldBounds.minX = centerX - max_extent / 2.0;
-    worldBounds.maxX = centerX + max_extent / 2.0;
+    worldBounds.minY = centerY - max_extent;
+    worldBounds.maxY = centerY + max_extent;
 
-    worldBounds.minY = centerY - max_extent / 2.0;
-    worldBounds.maxY = centerY + max_extent / 2.0;
-
-    worldBounds.minZ = centerZ - max_extent / 2.0;
-    worldBounds.maxZ = centerZ + max_extent / 2.0;
+    worldBounds.minZ = centerZ - max_extent;
+    worldBounds.maxZ = centerZ + max_extent;
 
     octree->root = createNode(worldBounds, NULL);
 
