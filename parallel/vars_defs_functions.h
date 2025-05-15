@@ -65,7 +65,11 @@ extern double HighestX, HighestY, HighestZ, LowestX, LowestY, LowestZ;
 /////////////////////////
 // CONST VALUES
 /////////////////////////
+<<<<<<< Updated upstream
 #define MAX_STEP 25000000    // Max amount of steps in the simulation
+=======
+#define MAX_STEP 15000000    // Max amount of steps in the simulation
+>>>>>>> Stashed changes
 #define PRINT_INTERVAL 50000 // The data is only stored in intervals due to storage and ram
 #define DELTA_TIME 1.5       // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
