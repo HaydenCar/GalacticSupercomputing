@@ -107,18 +107,20 @@ void Renderer::load_data(const std::string &filename)
     unsigned int timestep;
     int body_id;
     double x, y, z;
-    float normalise = 1e-10f;
+    float normalise = 1.0e-10f;
 
     bodies.clear();
     currentTimestep = 0;
     lastFrameTime = 0.0f;
+    
+    // Sets the number of bodies per frame using line 1
+    file >> bodiesPerFrame;
 
     // Figured this out from here read this!!!: https://stackoverflow.com/questions/43956124/c-while-loop-to-read-from-input-file
     while (file >> timestep >> body_id >> x >> y >> z)
     {
         bodies.push_back({body_id, glm::vec3(x * normalise, y * normalise, z * normalise)});
     }
-    std::cout << "Loaded " << bodies.size() << " bodies" << std::endl;
 }
 
 void Renderer::zoom_out()
@@ -303,12 +305,14 @@ void Renderer::render_frame()
             scale = 1.1f;
             color = glm::vec3(0.7f, 0.5f, 0.4f);
         }
-        else {
+        else
+        {
             scale = 1.0f;
             color = glm::vec3(1.0f, 1.0f, 1.0f); // White
         }
-        
-        if(body.id == current_follow){
+
+        if (body.id == current_follow)
+        {
             follow_vec = body.position;
         }
 

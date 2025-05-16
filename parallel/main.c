@@ -34,6 +34,7 @@ int main()
         return 1;
     }
 
+    fprintf(fp, "%d\n", NUM_BODIES);
     // Print step 0
     print_world(bodies, fp);
     timestep++;

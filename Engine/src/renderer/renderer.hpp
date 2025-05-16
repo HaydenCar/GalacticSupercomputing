@@ -28,7 +28,7 @@ public:
 private:
     unsigned int VBO, VAO, EBO;
     int currentTimestep = 0;
-    int bodiesPerFrame = 80;
+    int bodiesPerFrame;
     float frameTimeStep = 0.1f;
     float lastFrameTime = 0.0f;
     float cameraDistance;
