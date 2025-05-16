@@ -148,7 +148,7 @@ void initialise_bodies(BODY *bodies)
     double max_distance_from_sun = 1.496e11; // Earth's orbit
     int max_attempts = 100;
 
-    for (int i = 3; i < NUM_BODIES; i++)
+    for (int i = 9; i < NUM_BODIES; i++)
     {
         int attempt = 0;
         int valid = 0;
