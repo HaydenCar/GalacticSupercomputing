@@ -131,6 +131,11 @@ void Renderer::zoom_in()
     cameraDistance = cameraDistance + zoom_distance;
 }
 
+void Renderer::set_follow(int id)
+{
+    current_follow = id;
+}
+
 // Creates the render data
 void Renderer::create_render_data()
 {
@@ -198,7 +203,7 @@ void Renderer::render_frame()
     // Look at the center of your data
     glm::mat4 view = glm::lookAt(
         glm::vec3(cameraX, cameraDistance * 0.5f, cameraZ),
-        glm::vec3(0.0f, 0.0f, 0.0f),
+        follow_vec, // bodies[i].position??
         glm::vec3(0.0f, 1.0f, 0.0f));
 
     // Wider perspective view
@@ -242,100 +247,74 @@ void Renderer::render_frame()
         glm::mat4 model = glm::mat4(1.0f);
 
         float scale;
-        if (body.id == 0) // Sun
+        glm::vec3 color;
+        if (body.id > 9) // Default
         {
-            scale = 5.0f; 
+            scale = 1.0f;
+            color = glm::vec3(1.0f, 1.0f, 1.0f); // White
+        }
+        else if (body.id == 0) // Sun
+        {
+            scale = 5.0f;
+            color = glm::vec3(1.0f, 0.9f, 0.1f);
         }
         else if (body.id == 1) // Earth
         {
-            scale = 1.5f; 
+            scale = 1.5f;
+            color = glm::vec3(0.2f, 0.5f, 1.0f);
         }
         else if (body.id == 2) // Mercury
         {
-            scale = 1.2f; 
+            scale = 1.2f;
+            color = glm::vec3(0.6f, 0.6f, 0.6f);
         }
         else if (body.id == 3) // Venus
         {
-            scale = 1.48f; 
+            scale = 1.48f;
+            color = glm::vec3(1.0f, 0.6f, 0.2f);
         }
         else if (body.id == 4) // Mars
         {
-            scale = 1.3f; 
+            scale = 1.3f;
+            color = glm::vec3(0.8f, 0.3f, 0.1f);
         }
         else if (body.id == 5) // Jupiter
         {
-            scale = 3.0f; 
+            scale = 3.0f;
+            color = glm::vec3(0.9f, 0.7f, 0.5f);
         }
         else if (body.id == 6) // Saturn
         {
-            scale = 2.5f; 
+            scale = 2.5f;
+            color = glm::vec3(0.9f, 0.8f, 0.4f);
         }
         else if (body.id == 7) // Uranus
         {
             scale = 2.0f;
+            color = glm::vec3(0.4f, 0.8f, 0.9f);
         }
         else if (body.id == 8) // Neptune
         {
-            scale = 1.9f; 
+            scale = 1.9f;
+            color = glm::vec3(0.1f, 0.3f, 0.8f);
         }
         else if (body.id == 9) // Pluto
         {
-            scale = 1.1f; 
+            scale = 1.1f;
+            color = glm::vec3(0.7f, 0.5f, 0.4f);
         }
-        else // Default 
-        {
-            scale = 1.0f; 
+        else {
+            scale = 1.0f;
+            color = glm::vec3(1.0f, 1.0f, 1.0f); // White
+        }
+        
+        if(body.id == current_follow){
+            follow_vec = body.position;
         }
 
         model = glm::translate(model, body.position);
         model = glm::scale(model, glm::vec3(scale));
 
-        glm::vec3 color;
-        if (body.id == 0) // Sun
-        {
-            color = glm::vec3(1.0f, 0.9f, 0.1f); 
-        }
-        else if (body.id == 1) // Earth
-        {
-            color = glm::vec3(0.2f, 0.5f, 1.0f);
-        }
-        else if (body.id == 2) // Mercury
-        {
-            color = glm::vec3(0.6f, 0.6f, 0.6f);
-        }
-        else if (body.id == 3) // Venus
-        {
-            color = glm::vec3(1.0f, 0.6f, 0.2f);
-        }
-        else if (body.id == 4) // Mars
-        {
-            color = glm::vec3(0.8f, 0.3f, 0.1f);
-        }
-        else if (body.id == 5) // Jupiter
-        {
-            color = glm::vec3(0.9f, 0.7f, 0.5f);
-        }
-        else if (body.id == 6) // Saturn
-        {
-            color = glm::vec3(0.9f, 0.8f, 0.4f);
-        }
-        else if (body.id == 7) // Uranus
-        {
-            color = glm::vec3(0.4f, 0.8f, 0.9f);
-        }
-        else if (body.id == 8) // Neptune
-        {
-            color = glm::vec3(0.1f, 0.3f, 0.8f);
-        }
-        else if (body.id == 9) // Pluto
-        {
-            color = glm::vec3(0.7f, 0.5f, 0.4f);
-        }
-        else // Stars
-        {
-            color = glm::vec3(1.0f, 1.0f, 1.0f); // White
-        }
-        
         ourShader.setVec3("color", color);
         ourShader.setMat4("model", model);
         glDrawArrays(GL_TRIANGLES, 0, 36);

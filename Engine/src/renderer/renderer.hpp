@@ -9,6 +9,7 @@
 #define GL_SILENCE_DEPRECATION
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 #include <string>
 
 // Renderer class so easy to reuse
@@ -23,6 +24,7 @@ public:
     void load_data(const std::string &filename);
     void zoom_in();
     void zoom_out();
+    void set_follow(int id);
 private:
     unsigned int VBO, VAO, EBO;
     int currentTimestep = 0;
@@ -31,6 +33,8 @@ private:
     float lastFrameTime = 0.0f;
     float cameraDistance;
     float zoom_distance = 1.0f;
+    int current_follow;
+    glm::vec3 follow_vec;
 };
 
 #endif /* renderer_hpp */

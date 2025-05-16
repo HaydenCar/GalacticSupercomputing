@@ -63,18 +63,18 @@ extern double HighestX, HighestY, HighestZ, LowestX, LowestY, LowestZ;
 /////////////////////////
 // CONST VALUES
 /////////////////////////
-#define MAX_STEP 2500000     // Max amount of steps in the simulation
+#define MAX_STEP 100000000   // Max amount of steps in the simulation
 #define PRINT_INTERVAL 50000 // The data is only stored in intervals due to storage and ram
 #define DELTA_TIME 1.0       // Delta time is important as the smaller the more accurate but takes way longer to run
 #define GRAVITY 6.67430e-11
 #define NUM_BODIES 80
-#define WORLD_MIN_X -2e12
-#define WORLD_MAX_X 2e12
-#define WORLD_MIN_Y -2e12
-#define WORLD_MAX_Y 2e12
-#define WORLD_MIN_Z -2e12
-#define WORLD_MAX_Z 2e12
-#define MAX_THREADS 4
+#define WORLD_MIN_X -6e12
+#define WORLD_MAX_X 6e12
+#define WORLD_MIN_Y -6e12
+#define WORLD_MAX_Y 6e12
+#define WORLD_MIN_Z -6e12
+#define WORLD_MAX_Z 6e12
+#define MAX_THREADS 8
 /////////////////////////
 // FUNCTIONS
 /////////////////////////
