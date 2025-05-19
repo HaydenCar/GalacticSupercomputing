@@ -24,8 +24,8 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 - `(optional) gnuplot plot_script.gp`
   
 ### Controls:
-- `z - zoom in`
-- `x - zoom out`
+- `z - Zoom in`
+- `x - Zoom out`
 - `0 - Focus on the sun`
 - `1 - Focus on earth`
 - `2 - Focus on mercury`
