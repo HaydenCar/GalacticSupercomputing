@@ -1,6 +1,14 @@
 # Galactic Supercomputing
 
-An N-body simulation using high-performance computing and real-time 3D visualisation. This project models gravitational interactions between bodies using the **Barnes-Hut algorithm** and **Leapfrog integration**, accelerated with **OpenMP**, and visualised using **OpenGL**.
+An N-body simulation using high-performance computing and real-time 3D visualisation. This project models gravitational interactions between bodies using the **Barnes-Hut algorithm** and **Leapfrog integration**, accelerated with **OpenMP**, and visualised using **OpenGL**. Made as a third year group project.
+
+---
+
+## Group Members
+
+- Hayden Carr  
+- Ramazan Iskandarov  
+- Isabella Sturzu
 
 ---
 
@@ -28,13 +36,11 @@ An N-body simulation using high-performance computing and real-time 3D visualisa
 cd parallel
 make
 ./main
-```
 
 ### 2. Visualize the results:
 cd ../Engine
 make
 ./main
-```
 
 ---
 
@@ -61,11 +67,3 @@ make
 ![Simulation 1](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/s-s.png)  
 ![Simulation 2](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test1.png)  
 ![Simulation 3](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test2.png)
-
----
-
-## Group Members
-
-- Hayden Carr  
-- Ramazan Iskandarov  
-- Isabella Sturzu
