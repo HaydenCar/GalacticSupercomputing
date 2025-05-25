@@ -15,8 +15,7 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 ### Requirements to run code:
 - `Linux / MacOs`
 - `gnuplot`
-- `GLEW`
-- `GLUT`
+- `glew`
 
 ### Commands to run code:
 - `cd serial`
@@ -39,4 +38,6 @@ Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
 - `9 - Focus on pluto`
 
 ### Results:
-![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/serial/n_body_simulation.png)
+![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/s-s.png)
+![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test1.png)
+![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test2.png)
