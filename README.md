@@ -37,7 +37,7 @@ An N-body simulation using high-performance computing and real-time 3D visualisa
 - make
 - ./main
 
-### 2. Visualize the results:
+### 2. Visualise the results:
 - cd ../Engine
 - make
 - ./main
