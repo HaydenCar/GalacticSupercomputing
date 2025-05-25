@@ -1,43 +1,71 @@
 # Galactic Supercomputing
-Using High Performance Computing we will be undertaking a project where we will calculate an N-body Simulation. This will involve the use of Multi-Threading and a Visualisation Software.
 
-To build and run the code, download the folder cd into the serial subfolder and use the make command to build and then you will be able to run the exe.
+An N-body simulation using high-performance computing and real-time 3D visualisation. This project models gravitational interactions between bodies using the **Barnes-Hut algorithm** and **Leapfrog integration**, accelerated with **OpenMP**, and visualised using **OpenGL**.
 
-This is a year 3 computing group project.
-Group Members: Hayden Carr, Ramazan Iskandarov, Isabella Sturzu.
+---
 
-### Features:
-- `Barnes Hut algorithm using octree` 
-- `Leapfrog Integration` 
-- `3D Renderer`
-- `OpenMP` 
+## Features
 
-### Requirements to run code:
-- `Linux / MacOs`
-- `gnuplot`
-- `glew`
+- **Barnes-Hut algorithm using Octree**
+- **Leapfrog Integration**
+- **Multithreaded with OpenMP**
+- **3D Renderer using OpenGL (GLEW + GLFW + GLM)**
 
-### Commands to run code:
-- `cd serial`
-- `make`
-- `./main`
-- `(optional) gnuplot plot_script.gp`
-  
-### Controls:
-- `z - Zoom in`
-- `x - Zoom out`
-- `0 - Focus on the sun`
-- `1 - Focus on earth`
-- `2 - Focus on mercury`
-- `3 - Focus on venus`
-- `4 - Focus on mars`
-- `5 - Focus on jupiter`
-- `6 - Focus on saturn`
-- `7 - Focus on uranus`
-- `8 - Focus on neptune`
-- `9 - Focus on pluto`
+---
 
-### Results:
-![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/s-s.png)
-![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test1.png)
-![alt text](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test2.png)
+## Requirements
+
+- Linux or macOS
+- C++ compiler with OpenMP support
+- [GLEW](http://glew.sourceforge.net/)
+- [GLFW](https://www.glfw.org/)
+
+---
+
+## Build & Run
+
+### 1. Run the simulation:
+cd parallel
+make
+./main
+```
+
+### 2. Visualize the results:
+cd ../Engine
+make
+./main
+```
+
+---
+
+## Controls
+
+- `z` — Zoom in  
+- `x` — Zoom out  
+- `0-9` — Focus on sun and planets:
+  - `0`: Sun  
+  - `1`: Earth  
+  - `2`: Mercury  
+  - `3`: Venus  
+  - `4`: Mars  
+  - `5`: Jupiter  
+  - `6`: Saturn  
+  - `7`: Uranus  
+  - `8`: Neptune  
+  - `9`: Pluto
+
+---
+
+## Results
+
+![Simulation 1](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/s-s.png)  
+![Simulation 2](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test1.png)  
+![Simulation 3](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test2.png)
+
+---
+
+## Group Members
+
+- Hayden Carr  
+- Ramazan Iskandarov  
+- Isabella Sturzu
