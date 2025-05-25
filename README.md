@@ -33,14 +33,14 @@ An N-body simulation using high-performance computing and real-time 3D visualisa
 ## Build & Run
 
 ### 1. Run the simulation:
-cd parallel
-make
-./main
+- cd parallel
+- make
+- ./main
 
 ### 2. Visualize the results:
-cd ../Engine
-make
-./main
+- cd ../Engine
+- make
+- ./main
 
 ---
 
