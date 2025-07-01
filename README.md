@@ -7,7 +7,6 @@ An N-body simulation using high-performance computing and real-time 3D visualisa
 ## Group Members
 
 - Hayden Carr  
-- Ramazan Iskandarov  
 - Isabella Sturzu
 
 ---
@@ -67,3 +66,5 @@ An N-body simulation using high-performance computing and real-time 3D visualisa
 ![Simulation 1](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/s-s.png)  
 ![Simulation 2](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test1.png)  
 ![Simulation 3](https://github.com/HaydenCar/GalacticSupercomputing/blob/main/results/test2.png)
+[![Watch a demo](https://img.youtube.com/vi/MRGiLP0h20k/maxresdefault.jpg)](https://youtu.be/MRGiLP0h20k)
+
